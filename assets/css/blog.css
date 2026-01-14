@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Blog Posts (Archive / Home)
+   ========================================================================== */
+
+.ft-posts {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.ft-post {
+    background: var(--ft-bg-card);
+    border: 0.0625rem solid var(--ft-border-light);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    transition: border-color var(--ft-transition), box-shadow var(--ft-transition);
+}
+
+.ft-post:hover {
+    border-color: var(--ft-primary);
+    box-shadow: var(--ft-shadow-md);
+}
+
+.ft-post-thumbnail {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.ft-post-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ft-post-content {
+    padding: 1.25rem;
+}
+
+.ft-post-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.ft-post-title a {
+    color: var(--ft-text-primary);
+}
+
+.ft-post-title a:hover {
+    color: var(--ft-primary);
+    text-decoration: none;
+}
+
+.ft-post-meta {
+    font-size: 0.8125rem;
+    color: var(--ft-text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.ft-post-excerpt {
+    color: var(--ft-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}

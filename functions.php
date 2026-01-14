@@ -135,8 +135,50 @@ add_action( 'widgets_init', 'ft_widgets_init' );
  * Enqueue scripts and styles
  */
 function ft_scripts() {
-    // Main stylesheet
+    // Inter Font (Local)
+    wp_enqueue_style( 'ft-font-inter', FT_URL . '/assets/fonts/InterVariable.woff2', array(), null );
+    
+    // Main stylesheet (style.css - Reset)
     wp_enqueue_style( 'functionalities-theme-style', get_stylesheet_uri(), array(), FT_VERSION );
+
+    // Global Styles (Layout, Typography, Variables)
+    wp_enqueue_style( 'ft-global', FT_URL . '/assets/css/global.css', array( 'functionalities-theme-style' ), FT_VERSION );
+
+    // Frontpage Styles
+    if ( is_front_page() ) {
+        wp_enqueue_style( 'ft-frontpage', FT_URL . '/assets/css/frontpage.css', array( 'ft-global' ), FT_VERSION );
+    }
+
+    // Blog / Archive Styles
+    if ( ( is_home() || is_archive() || is_search() ) && ! is_front_page() ) {
+        wp_enqueue_style( 'ft-blog', FT_URL . '/assets/css/blog.css', array( 'ft-global' ), FT_VERSION );
+    }
+
+    // Single Post / Page Styles
+    if ( is_singular() ) {
+        wp_enqueue_style( 'ft-single', FT_URL . '/assets/css/single.css', array( 'ft-global' ), FT_VERSION );
+    }
+
+    // Inline CSS for Fonts
+    $font_css = "
+        @font-face {
+            font-family: 'Inter';
+            src: url('" . FT_URL . "/assets/fonts/InterVariable.woff2') format('woff2-variations'),
+                 url('" . FT_URL . "/assets/fonts/InterVariable.woff2') format('woff2');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Inter';
+            src: url('" . FT_URL . "/assets/fonts/InterVariable-Italic.woff2') format('woff2-variations'),
+                 url('" . FT_URL . "/assets/fonts/InterVariable-Italic.woff2') format('woff2');
+            font-weight: 100 900;
+            font-style: italic;
+            font-display: swap;
+        }
+    ";
+    wp_add_inline_style( 'functionalities-theme-style', $font_css );
 
     // Main script
     wp_enqueue_script( 'functionalities-theme-scripts', FT_URL . '/assets/js/main.js', array(), FT_VERSION, true );
@@ -151,7 +193,8 @@ add_action( 'wp_enqueue_scripts', 'ft_scripts' );
 /**
  * Load Customizer settings
  */
-require_once FT_DIR . '/inc/customizer.php';
+require_once FT_DIR . '/inc/customizer/class-ft-customizer.php';
+require_once FT_DIR . '/inc/customizer-css.php';
 
 /**
  * Load template functions

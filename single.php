@@ -18,7 +18,7 @@ $has_sidebar = ft_has_sidebar();
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-    <article id="post-<?php the_ID(); ?>" <?php post_class( 'ft-card' ); ?>>
+    <article id="post-<?php the_ID(); ?>" <?php post_class( 'ft-card ft-single-post' ); ?>>
         <header class="ft-card-header">
             <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
             
@@ -28,10 +28,10 @@ $has_sidebar = ft_has_sidebar();
             </div>
         </header>
 
-        <div class="ft-card-body">
-            <?php ft_post_thumbnail(); ?>
+        <?php ft_post_thumbnail(); ?>
 
-            <div class="entry-content">
+        <div class="ft-card-body">
+            <div class="entry-content ft-readable-content">
                 <?php
                 the_content(
                     sprintf(
@@ -51,7 +51,7 @@ $has_sidebar = ft_has_sidebar();
                 ?>
             </div>
 
-            <footer class="entry-footer">
+            <footer class="entry-footer ft-readable-content">
                 <?php ft_entry_footer(); ?>
             </footer>
         </div>

@@ -1,7 +1,7 @@
     </div><!-- .ft-container -->
 </main><!-- #primary -->
 
-<footer class="ft-footer" role="contentinfo">
+<footer class="ft-footer">
     <div class="ft-container">
         <div class="ft-footer-grid">
             <div class="ft-footer-about">

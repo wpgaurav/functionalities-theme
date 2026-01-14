@@ -50,7 +50,7 @@ if ( post_password_required() ) {
         </div>
 
         <?php if ( ! comments_open() ) : ?>
-            <p class="no-comments" style="padding: 16px;"><?php esc_html_e( 'Comments are closed.', 'functionalities-theme' ); ?></p>
+            <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'functionalities-theme' ); ?></p>
         <?php endif; ?>
 
     <?php endif; ?>
@@ -58,7 +58,7 @@ if ( post_password_required() ) {
     <div class="ft-card-body">
         <?php
         comment_form( array(
-            'title_reply_before' => '<h3 id="reply-title" class="comment-reply-title" style="margin-bottom: 16px;">',
+            'title_reply_before' => '<h3 id="reply-title" class="comment-reply-title">',
             'title_reply_after'  => '</h3>',
         ) );
         ?>

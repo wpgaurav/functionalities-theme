@@ -44,33 +44,30 @@
 </div>
 <?php endif; ?>
 
-<header class="ft-header" role="banner">
-    <div class="ft-container">
-        <div class="ft-header-inner">
-            <div class="ft-brand">
-                <?php echo ft_get_site_logo(); ?>
-            </div>
-
-            <nav class="ft-nav" role="navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'functionalities-theme' ); ?>">
-                <?php
-                if ( has_nav_menu( 'primary' ) ) {
-                    wp_nav_menu( array(
-                        'theme_location' => 'primary',
-                        'container'      => false,
-                        'menu_class'     => 'ft-nav',
-                        'items_wrap'     => '%3$s',
-                        'depth'          => 1,
-                    ) );
-                }
-                ?>
-            </nav>
-
-            <button class="ft-menu-toggle" id="ft-menu-toggle" aria-controls="ft-mobile-nav" aria-expanded="false">
-                <span class="ft-icon-menu"><?php ft_icon( 'menu', 24 ); ?></span>
-                <span class="ft-icon-close" style="display: none;"><?php ft_icon( 'close', 24 ); ?></span>
-                <span class="screen-reader-text"><?php esc_html_e( 'Menu', 'functionalities-theme' ); ?></span>
-            </button>
+<header class="ft-header">
+    <div class="ft-container ft-header-inner">
+        <div class="ft-brand">
+            <?php echo ft_get_site_logo(); ?>
         </div>
+
+        <nav class="ft-nav" aria-label="<?php esc_attr_e( 'Primary Menu', 'functionalities-theme' ); ?>">
+            <?php
+            if ( has_nav_menu( 'primary' ) ) {
+                wp_nav_menu( array(
+                    'theme_location' => 'primary',
+                    'container'      => false,
+                    'menu_class'     => 'ft-nav',
+                    'items_wrap'     => '%3$s',
+                    'depth'          => 1,
+                ) );
+            }
+            ?>
+        </nav>
+
+        <button class="ft-menu-toggle" id="ft-menu-toggle" aria-controls="ft-mobile-nav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Menu', 'functionalities-theme' ); ?>">
+            <span class="ft-icon-menu"><?php ft_icon( 'menu', 24 ); ?></span>
+            <span class="ft-icon-close" style="display: none;"><?php ft_icon( 'close', 24 ); ?></span>
+        </button>
     </div>
 </header>
 
@@ -86,9 +83,8 @@
     ?>
 </nav>
 
-<?php if ( ft_should_show_hero() ) : ?>
-    <?php get_template_part( 'template-parts/hero' ); ?>
-<?php endif; ?>
+
+<?php get_template_part( 'template-parts/header/page-header' ); ?>
 
 <main id="primary" class="ft-main" role="main">
     <div class="ft-container">

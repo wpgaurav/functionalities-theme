@@ -157,3 +157,39 @@ function ft_post_navigation() {
         'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'functionalities-theme' ) . '</span> <span class="nav-title">%title</span>',
     ) );
 }
+
+/**
+ * Breadcrumbs
+ */
+function ft_breadcrumbs() {
+    if ( is_front_page() ) {
+        return;
+    }
+
+    echo '<nav class="ft-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumbs', 'functionalities-theme' ) . '">';
+    echo '<span class="ft-breadcrumb-item"><a href="' . esc_url( home_url( '/' ) ) . '">' . ft_get_icon( 'home', 14 ) . '<span class="screen-reader-text">' . esc_html__( 'Home', 'functionalities-theme' ) . '</span></a></span>';
+
+    echo '<span class="ft-breadcrumb-sep">/</span>';
+
+    if ( is_home() ) {
+        echo '<span class="ft-breadcrumb-item current">' . esc_html( get_the_title( get_option( 'page_for_posts' ) ) ) . '</span>';
+    } elseif ( is_archive() ) {
+        echo '<span class="ft-breadcrumb-item current">' . get_the_archive_title() . '</span>';
+    } elseif ( is_search() ) {
+        echo '<span class="ft-breadcrumb-item current">' . sprintf( esc_html__( 'Search: %s', 'functionalities-theme' ), get_search_query() ) . '</span>';
+    } elseif ( is_singular() ) {
+        // Parents
+        global $post;
+        if ( is_page() && $post->post_parent ) {
+            $ancestors = get_post_ancestors( $post->ID );
+            $ancestors = array_reverse( $ancestors );
+            foreach ( $ancestors as $ancestor ) {
+                echo '<span class="ft-breadcrumb-item"><a href="' . esc_url( get_permalink( $ancestor ) ) . '">' . esc_html( get_the_title( $ancestor ) ) . '</a></span>';
+                echo '<span class="ft-breadcrumb-sep">/</span>';
+            }
+        }
+        echo '<span class="ft-breadcrumb-item current">' . get_the_title() . '</span>';
+    }
+    
+    echo '</nav>';
+}
