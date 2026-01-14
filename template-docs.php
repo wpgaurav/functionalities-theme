@@ -9,16 +9,16 @@
 get_header();
 ?>
 
-<div class="ft-docs-layout ft-container">
-    <aside class="ft-docs-sidebar">
-        <div class="ft-docs-nav">
+<div class="docs-layout container">
+    <aside class="docs-sidebar">
+        <div class="docs-nav">
             <?php
             // We can use a specific menu for docs navigation
             if ( has_nav_menu( 'primary' ) ) {
                 wp_nav_menu( array(
                     'theme_location' => 'primary', // Or a 'docs' menu if you register one
                     'container'      => false,
-                    'menu_class'     => 'ft-docs-menu',
+                    'menu_class'     => 'docs-menu',
                     'depth'          => 2,
                 ) );
             }
@@ -26,12 +26,12 @@ get_header();
         </div>
     </aside>
 
-    <div class="ft-docs-content ft-card">
+    <div class="docs-content card">
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-            <header class="ft-card-header">
-                <h1 class="ft-page-title"><?php the_title(); ?></h1>
+            <header class="card-header">
+                <h1 class="page-title"><?php the_title(); ?></h1>
             </header>
-            <div class="ft-card-body entry-content">
+            <div class="card-body entry-content">
                 <?php the_content(); ?>
             </div>
         <?php endwhile; endif; ?>
@@ -39,7 +39,7 @@ get_header();
 </div>
 
 <style>
-.ft-docs-layout {
+.docs-layout {
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: 40px;
@@ -47,49 +47,49 @@ get_header();
     padding-bottom: 40px;
 }
 
-.ft-docs-sidebar {
+.docs-sidebar {
     position: sticky;
     top: 100px;
     height: fit-content;
 }
 
-.ft-docs-menu {
+.docs-menu {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.ft-docs-menu li {
+.docs-menu li {
     margin-bottom: 4px;
 }
 
-.ft-docs-menu a {
+.docs-menu a {
     display: block;
     padding: 8px 16px;
     border-radius: 4px;
-    color: var(--ft-text-secondary);
+    color: var(--text-secondary);
     font-size: 14px;
-    transition: all var(--ft-transition);
+    transition: all var(--transition);
 }
 
-.ft-docs-menu a:hover {
-    background: var(--ft-bg-body);
-    color: var(--ft-primary);
+.docs-menu a:hover {
+    background: var(--bg-body);
+    color: var(--primary);
     text-decoration: none;
 }
 
-.ft-docs-menu .current-menu-item > a {
+.docs-menu .current-menu-item > a {
     background: #f0f6fc;
-    color: var(--ft-primary);
+    color: var(--primary);
     font-weight: 600;
 }
 
 @media (max-width: 960px) {
-    .ft-docs-layout {
+    .docs-layout {
         grid-template-columns: 1fr;
     }
     
-    .ft-docs-sidebar {
+    .docs-sidebar {
         position: static;
         margin-bottom: 24px;
     }

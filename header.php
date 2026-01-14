@@ -15,13 +15,11 @@
 </a>
 
 <?php if ( get_theme_mod( 'ft_show_topbar', true ) ) : ?>
-<div class="ft-topbar">
-    <a href="https://wordpress.org" target="_blank" rel="noopener" class="ft-topbar-logo" title="WordPress.org">
-        <?php ft_icon( 'wordpress', 20 ); ?>
-    </a>
-    <span class="ft-topbar-title"><?php echo esc_html( get_theme_mod( 'ft_topbar_text', __( 'For WordPress', 'functionalities-theme' ) ) ); ?></span>
+<div class="topbar">
+
+    <span class="topbar-title"><?php echo wp_kses_post( get_theme_mod( 'ft_topbar_text', __( 'For WordPress', 'functionalities-theme' ) ) ); ?></span>
     
-    <div class="ft-topbar-right">
+    <div class="topbar-right">
         <?php
         if ( has_nav_menu( 'topbar' ) ) {
             wp_nav_menu( array(
@@ -35,7 +33,7 @@
         $github_url = get_theme_mod( 'ft_social_github', '' );
         if ( ! empty( $github_url ) ) :
         ?>
-            <a href="<?php echo esc_url( $github_url ); ?>" target="_blank" rel="noopener" class="ft-topbar-link">
+            <a href="<?php echo esc_url( $github_url ); ?>" target="_blank" rel="noopener" class="topbar-link">
                 <?php ft_icon( 'github', 16 ); ?>
                 <span>GitHub</span>
             </a>
@@ -44,19 +42,19 @@
 </div>
 <?php endif; ?>
 
-<header class="ft-header">
-    <div class="ft-container ft-header-inner">
-        <div class="ft-brand">
+<header class="header<?php echo get_theme_mod( 'ft_sticky_header', true ) ? ' is-sticky' : ''; ?>">
+    <div class="container header-inner">
+        <div class="brand">
             <?php echo ft_get_site_logo(); ?>
         </div>
 
-        <nav class="ft-nav" aria-label="<?php esc_attr_e( 'Primary Menu', 'functionalities-theme' ); ?>">
+        <nav class="nav" aria-label="<?php esc_attr_e( 'Primary Menu', 'functionalities-theme' ); ?>">
             <?php
             if ( has_nav_menu( 'primary' ) ) {
                 wp_nav_menu( array(
                     'theme_location' => 'primary',
                     'container'      => false,
-                    'menu_class'     => 'ft-nav',
+                    'menu_class'     => 'nav',
                     'items_wrap'     => '%3$s',
                     'depth'          => 1,
                 ) );
@@ -64,14 +62,14 @@
             ?>
         </nav>
 
-        <button class="ft-menu-toggle" id="ft-menu-toggle" aria-controls="ft-mobile-nav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Menu', 'functionalities-theme' ); ?>">
-            <span class="ft-icon-menu"><?php ft_icon( 'menu', 24 ); ?></span>
-            <span class="ft-icon-close" style="display: none;"><?php ft_icon( 'close', 24 ); ?></span>
+        <button class="menu-toggle" id="menu-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Menu', 'functionalities-theme' ); ?>">
+            <span class="icon-menu"><?php ft_icon( 'menu', 24 ); ?></span>
+            <span class="icon-close" style="display: none;"><?php ft_icon( 'close', 24 ); ?></span>
         </button>
     </div>
 </header>
 
-<nav class="ft-mobile-nav" id="ft-mobile-nav" role="navigation" aria-label="<?php esc_attr_e( 'Mobile Menu', 'functionalities-theme' ); ?>">
+<nav class="mobile-nav" id="mobile-nav" role="navigation" aria-label="<?php esc_attr_e( 'Mobile Menu', 'functionalities-theme' ); ?>">
     <?php
     if ( has_nav_menu( 'primary' ) ) {
         wp_nav_menu( array(
@@ -84,7 +82,7 @@
 </nav>
 
 
-<?php get_template_part( 'template-parts/header/page-header' ); ?>
 
-<main id="primary" class="ft-main" role="main">
-    <div class="ft-container">
+
+<main id="primary" class="main" role="main">
+    <div class="container">

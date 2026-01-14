@@ -17,30 +17,29 @@
 -   **Core Structure**: `style.css`, `functions.php`, `index.php` created.
 -   **Header/Navigation**: Top bar (WP Admin style) and main sticky header designed.
 -   **Context-Aware Headers**:
-    -   replaced static Hero with `page-header.php` and `ft_get_header_context`.
-    -   Customizer controls for showing/hiding headers per context (Home, Blog, Single, Page).
+    -   Replaced static Hero with `page-header.php` and `ft_get_header_context`.
+    -   *Update*: Removed granular visibility controls for simplification.
 -   **Mobile Menu**: Responsive slide-down menu with accessibility support.
 -   **CSS Variables**: Comprehensive token system for colors, spacing, and typography.
+-   **Class Naming**: Removed legacy `ft-` prefix from all classes and IDs for cleaner markup.
 -   **Customizer Enhancements**:
     -   **Identity**: Controls for **Logo Width/Height**, **Site Title** (Show/Hide, Color, Size, Weight), **Tagline** (Show/Hide).
     -   **Typography**: Controls for Font Family (Inter/System/Serif), Weight, Base Size, **Line Height**.
     -   **Global Design**: Controls for Button Radius, Input Styles, Icon Stroke Width.
+    -   **Frontpage Module Controls**: Added content fields (titles, descriptions, button text/url) for all frontpage sections (Features, Latest Posts, CTA, FAQ, etc).
     -   **CSS Generation**: dynamic `customizer-css.php`.
 -   **Single Post Layout**:
     -   Edge-to-Edge Featured Image (full width relative to card).
-    -   Centered Content for Readability (`.ft-readable-content` max-width 680px).
+    -   Centered Content for Readability (max-width 680px).
+    -   Refined Title logic (always H1).
 -   **Responsive Upgrade**:
     -   Updated `style.css` with Modern CSS (`clamp`, `min`, `minmax`).
     -   Fluid typography and spacing.
 -   **Interactions**: FAQ Accordion and Copy-to-Clipboard logic implemented in `main.js`.
+-   **Icons**: Added `user` and `date` icons to `inc/template-functions.php` and integrated into post meta.
 
 ### 🚧 In Progress / Next Up
 1.  **Deep Customizer Refactor (Modular Architecture)**:
-    -   Split `customizer.php` into `inc/customizer/` directory.
-    -   **Global Options Panel**: Fonts, Colors, Typography, Layout.
-    -   **Frontpage Options Panel**:
-        -   Sections: Hero, Features, Latest Posts, Featured Posts, CTA, FAQ, Testimonials, Contact, Custom HTML.
-        -   Controls: Toggle (Show/Hide), Priority (Sorting), Content.
     -   **Blog/Archive Options Panel**: Hero, Featured Posts, Category Filter, Custom HTML, Sidebar.
     -   **Single Post/Page/CPT Options Panel**:
         -   **Hero Layouts**: No Image, Left, Right, Top, Bottom, Overlay.

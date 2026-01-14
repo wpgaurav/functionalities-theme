@@ -13,16 +13,16 @@ get_header();
 // can use blocks or we'll provide a default set.
 ?>
 
-<div class="ft-page-header ft-container">
-    <h1 class="ft-page-title"><?php the_title(); ?></h1>
-    <p class="ft-page-subtitle"><?php echo get_post_meta( get_the_ID(), '_ft_subtitle', true ) ?: esc_html__( 'Frequently Asked Questions about Functionalities.', 'functionalities-theme' ); ?></p>
+<div class="page-header container">
+    <h1 class="page-title"><?php the_title(); ?></h1>
+    <p class="page-subtitle"><?php echo get_post_meta( get_the_ID(), '_ft_subtitle', true ) ?: esc_html__( 'Frequently Asked Questions about Functionalities.', 'functionalities-theme' ); ?></p>
 </div>
 
-<div class="ft-faq-container">
-    <div class="ft-faq-grid ft-grid-auto">
+<div class="faq-container">
+    <div class="faq-grid grid-auto">
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-            <div class="ft-card">
-                <div class="ft-card-body">
+            <div class="card">
+                <div class="card-body">
                     <?php the_content(); ?>
                 </div>
             </div>
@@ -32,25 +32,25 @@ get_header();
 
 <style>
 /* FAQ Specific Styles */
-.ft-faq-container {
+.faq-container {
     max-width: 900px;
     margin: 0 auto;
 }
 
-.ft-faq-item {
-    background: var(--ft-bg-card);
-    border: 1px solid var(--ft-border-light);
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
     border-radius: 4px;
     margin-bottom: 12px;
     overflow: hidden;
-    transition: all var(--ft-transition);
+    transition: all var(--transition);
 }
 
-.ft-faq-item:hover {
-    border-color: var(--ft-primary);
+.faq-item:hover {
+    border-color: var(--primary);
 }
 
-.ft-faq-question {
+.faq-question {
     padding: 16px 20px;
     width: 100%;
     text-align: left;
@@ -62,20 +62,20 @@ get_header();
     cursor: pointer;
     font-size: 15px;
     font-weight: 500;
-    color: var(--ft-text-primary);
+    color: var(--text-primary);
 }
 
-.ft-faq-question:after {
+.faq-question:after {
     content: '+';
     font-size: 20px;
-    color: var(--ft-text-muted);
+    color: var(--text-muted);
 }
 
-.ft-faq-item.active .ft-faq-question:after {
+.faq-item.active .faq-question:after {
     content: '−';
 }
 
-.ft-faq-answer {
+.faq-answer {
     padding: 0 20px;
     max-height: 0;
     overflow: hidden;
@@ -83,10 +83,10 @@ get_header();
     background: white;
 }
 
-.ft-faq-item.active .ft-faq-answer {
+.faq-item.active .faq-answer {
     max-height: 1000px; /* Large enough for content */
     padding: 20px;
-    border-top: 1px solid var(--ft-border-light);
+    border-top: 1px solid var(--border-light);
 }
 </style>
 

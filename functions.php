@@ -89,13 +89,20 @@ add_action( 'after_setup_theme', 'ft_content_width', 0 );
  * Register widget areas
  */
 function ft_widgets_init() {
+    // Register custom widgets
+    require_once FT_DIR . '/inc/widgets/class-ft-widget-profile.php';
+    require_once FT_DIR . '/inc/widgets/class-ft-widget-stats.php';
+    
+    register_widget( 'FT_Widget_Profile' );
+    register_widget( 'FT_Widget_Stats' );
+
     register_sidebar( array(
         'name'          => esc_html__( 'Sidebar', 'functionalities-theme' ),
         'id'            => 'sidebar-1',
         'description'   => esc_html__( 'Add widgets here.', 'functionalities-theme' ),
-        'before_widget' => '<section id="%1$s" class="ft-widget ft-card %2$s">',
+        'before_widget' => '<section id="%1$s" class="widget card %2$s">',
         'after_widget'  => '</section>',
-        'before_title'  => '<h3 class="ft-widget-title">',
+        'before_title'  => '<h3 class="widget-title">',
         'after_title'   => '</h3>',
     ) );
 
@@ -103,7 +110,7 @@ function ft_widgets_init() {
         'name'          => esc_html__( 'Footer Widget 1', 'functionalities-theme' ),
         'id'            => 'footer-1',
         'description'   => esc_html__( 'First footer widget area.', 'functionalities-theme' ),
-        'before_widget' => '<div id="%1$s" class="ft-footer-widget %2$s">',
+        'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h4>',
         'after_title'   => '</h4>',
@@ -113,7 +120,7 @@ function ft_widgets_init() {
         'name'          => esc_html__( 'Footer Widget 2', 'functionalities-theme' ),
         'id'            => 'footer-2',
         'description'   => esc_html__( 'Second footer widget area.', 'functionalities-theme' ),
-        'before_widget' => '<div id="%1$s" class="ft-footer-widget %2$s">',
+        'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h4>',
         'after_title'   => '</h4>',
@@ -123,7 +130,7 @@ function ft_widgets_init() {
         'name'          => esc_html__( 'Footer Widget 3', 'functionalities-theme' ),
         'id'            => 'footer-3',
         'description'   => esc_html__( 'Third footer widget area.', 'functionalities-theme' ),
-        'before_widget' => '<div id="%1$s" class="ft-footer-widget %2$s">',
+        'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h4>',
         'after_title'   => '</h4>',
@@ -135,46 +142,36 @@ add_action( 'widgets_init', 'ft_widgets_init' );
  * Enqueue scripts and styles
  */
 function ft_scripts() {
-    // Inter Font (Local)
-    wp_enqueue_style( 'ft-font-inter', FT_URL . '/assets/fonts/InterVariable.woff2', array(), null );
+    // Inter Font (Local) - loaded via inline styles below to avoid render blocking or invalid link types
     
     // Main stylesheet (style.css - Reset)
     wp_enqueue_style( 'functionalities-theme-style', get_stylesheet_uri(), array(), FT_VERSION );
 
     // Global Styles (Layout, Typography, Variables)
-    wp_enqueue_style( 'ft-global', FT_URL . '/assets/css/global.css', array( 'functionalities-theme-style' ), FT_VERSION );
+    wp_enqueue_style( 'ft-global', FT_URL . '/assets/css/global.min.css', array( 'functionalities-theme-style' ), FT_VERSION );
 
     // Frontpage Styles
     if ( is_front_page() ) {
-        wp_enqueue_style( 'ft-frontpage', FT_URL . '/assets/css/frontpage.css', array( 'ft-global' ), FT_VERSION );
+        wp_enqueue_style( 'ft-frontpage', FT_URL . '/assets/css/frontpage.min.css', array( 'ft-global' ), FT_VERSION );
     }
 
     // Blog / Archive Styles
     if ( ( is_home() || is_archive() || is_search() ) && ! is_front_page() ) {
-        wp_enqueue_style( 'ft-blog', FT_URL . '/assets/css/blog.css', array( 'ft-global' ), FT_VERSION );
+        wp_enqueue_style( 'ft-blog', FT_URL . '/assets/css/blog.min.css', array( 'ft-global' ), FT_VERSION );
     }
 
     // Single Post / Page Styles
     if ( is_singular() ) {
-        wp_enqueue_style( 'ft-single', FT_URL . '/assets/css/single.css', array( 'ft-global' ), FT_VERSION );
+        wp_enqueue_style( 'ft-single', FT_URL . '/assets/css/single.min.css', array( 'ft-global' ), FT_VERSION );
     }
 
     // Inline CSS for Fonts
     $font_css = "
         @font-face {
             font-family: 'Inter';
-            src: url('" . FT_URL . "/assets/fonts/InterVariable.woff2') format('woff2-variations'),
-                 url('" . FT_URL . "/assets/fonts/InterVariable.woff2') format('woff2');
+            src: url('" . FT_URL . "/assets/fonts/InterVariable.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Inter';
-            src: url('" . FT_URL . "/assets/fonts/InterVariable-Italic.woff2') format('woff2-variations'),
-                 url('" . FT_URL . "/assets/fonts/InterVariable-Italic.woff2') format('woff2');
-            font-weight: 100 900;
-            font-style: italic;
             font-display: swap;
         }
     ";

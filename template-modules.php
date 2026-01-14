@@ -9,13 +9,13 @@
 get_header();
 ?>
 
-<div class="ft-page-header ft-container">
-    <h1 class="ft-page-title"><?php the_title(); ?></h1>
-    <p class="ft-page-subtitle"><?php echo get_post_meta( get_the_ID(), '_ft_subtitle', true ) ?: esc_html__( 'Powerful modules to enhance your WordPress site.', 'functionalities-theme' ); ?></p>
+<div class="page-header container">
+    <h1 class="page-title"><?php the_title(); ?></h1>
+    <p class="page-subtitle"><?php echo get_post_meta( get_the_ID(), '_ft_subtitle', true ) ?: esc_html__( 'Powerful modules to enhance your WordPress site.', 'functionalities-theme' ); ?></p>
 </div>
 
-<div class="ft-container">
-    <div class="ft-grid ft-grid-3">
+<div class="container">
+    <div class="grid grid-3">
         <?php
         // This template assumes the content of the page consists of the module cards.
         // In a real theme, you might use a custom post type 'modules'.
@@ -28,33 +28,33 @@ get_header();
 
 <style>
 /* CSS to handle module cards if manually entered in the editor */
-.ft-wp-module-card {
-    background: var(--ft-bg-card);
-    border: 1px solid var(--ft-border-light);
+.wp-module-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
     border-radius: 4px;
     padding: 24px;
-    transition: all var(--ft-transition);
+    transition: all var(--transition);
 }
 
-.ft-wp-module-card:hover {
-    border-color: var(--ft-primary);
+.wp-module-card:hover {
+    border-color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: var(--ft-shadow-md);
+    box-shadow: var(--shadow-md);
 }
 
-.ft-wp-module-icon {
+.wp-module-icon {
     width: 48px;
     height: 48px;
-    background: var(--ft-bg-body);
+    background: var(--bg-body);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
-    color: var(--ft-primary);
+    color: var(--primary);
 }
 
-.ft-wp-module-icon svg {
+.wp-module-icon svg {
     width: 24px;
     height: 24px;
 }

@@ -12,17 +12,17 @@ $has_sidebar = ft_has_sidebar();
 ?>
 
 <?php if ( $has_sidebar ) : ?>
-<div class="ft-with-sidebar <?php echo esc_attr( ft_get_sidebar_class() ); ?>">
-    <div class="ft-content-area">
+<div class="with-sidebar <?php echo esc_attr( ft_get_sidebar_class() ); ?>">
+    <div class="content-area">
 <?php endif; ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-    <article id="post-<?php the_ID(); ?>" <?php post_class( 'ft-card ft-single-post' ); ?>>
-        <header class="ft-card-header">
+    <article id="post-<?php the_ID(); ?>" <?php post_class( 'card single-post' ); ?>>
+        <header class="card-header">
             <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
             
-            <div class="entry-meta ft-post-meta">
+            <div class="entry-meta post-meta">
                 <?php ft_posted_on(); ?>
                 <?php ft_posted_by(); ?>
             </div>
@@ -30,8 +30,8 @@ $has_sidebar = ft_has_sidebar();
 
         <?php ft_post_thumbnail(); ?>
 
-        <div class="ft-card-body">
-            <div class="entry-content ft-readable-content">
+        <div class="card-body">
+            <div class="entry-content readable-content">
                 <?php
                 the_content(
                     sprintf(
@@ -51,7 +51,7 @@ $has_sidebar = ft_has_sidebar();
                 ?>
             </div>
 
-            <footer class="entry-footer ft-readable-content">
+            <footer class="entry-footer readable-content">
                 <?php ft_entry_footer(); ?>
             </footer>
         </div>
@@ -68,9 +68,9 @@ $has_sidebar = ft_has_sidebar();
 <?php endwhile; ?>
 
 <?php if ( $has_sidebar ) : ?>
-    </div><!-- .ft-content-area -->
+    </div><!-- .content-area -->
     <?php get_sidebar(); ?>
-</div><!-- .ft-with-sidebar -->
+</div><!-- .with-sidebar -->
 <?php endif; ?>
 
 <?php

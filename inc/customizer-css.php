@@ -24,11 +24,11 @@ function ft_customizer_css_output() {
     $success = get_theme_mod( 'ft_success_color', '#00a32a' );
     $warning = get_theme_mod( 'ft_warning_color', '#dba617' );
 
-    $styles[':root'][] = "--ft-primary: {$primary};";
-    $styles[':root'][] = "--ft-primary-dark: " . ft_adjust_brightness( $primary, -20 ) . ";";
-    $styles[':root'][] = "--ft-primary-light: " . ft_adjust_brightness( $primary, 40 ) . ";";
-    $styles[':root'][] = "--ft-success: {$success};";
-    $styles[':root'][] = "--ft-warning: {$warning};";
+    $styles[':root'][] = "--primary: {$primary};";
+    $styles[':root'][] = "--primary-dark: " . ft_adjust_brightness( $primary, -20 ) . ";";
+    $styles[':root'][] = "--primary-light: " . ft_adjust_brightness( $primary, 40 ) . ";";
+    $styles[':root'][] = "--success: {$success};";
+    $styles[':root'][] = "--warning: {$warning};";
 
     // =========================================================================
     // Branding
@@ -37,14 +37,14 @@ function ft_customizer_css_output() {
     // Logo Size
     $logo_width = get_theme_mod( 'ft_logo_width', '150' );
     $logo_height = get_theme_mod( 'ft_logo_height', '40' );
-    $styles['.custom-logo-link img, .ft-brand img'][] = "max-width: {$logo_width}px; max-height: {$logo_height}px; width: auto; height: auto;";
+    $styles['.custom-logo-link img, .brand img'][] = "max-width: {$logo_width}px; max-height: {$logo_height}px; width: auto; height: auto;";
     
     // Site Title
     $title_color = get_theme_mod( 'ft_site_title_color', '#1d2327' );
     $title_size = get_theme_mod( 'ft_site_title_size', '18' );
     $title_weight = get_theme_mod( 'ft_site_title_weight', '600' );
     
-    $styles['.ft-brand a'][] = "color: {$title_color}; font-size: {$title_size}px; font-weight: {$title_weight};";
+    $styles['.brand a'][] = "color: {$title_color}; font-size: {$title_size}px; font-weight: {$title_weight};";
 
     // =========================================================================
     // Typography
@@ -53,16 +53,16 @@ function ft_customizer_css_output() {
     // Body Font
     $body_font = get_theme_mod( 'ft_body_font_family', 'Inter' );
     $body_stack = ft_get_font_stack( $body_font );
-    $styles[':root'][] = "--ft-font-family: {$body_stack};";
+    $styles[':root'][] = "--font-family: {$body_stack};";
 
     // Headings Font
     $headings_font = get_theme_mod( 'ft_headings_font_family', 'Inter' );
     $headings_stack = ft_get_font_stack( $headings_font );
-    $styles[':root'][] = "--ft-font-headings: {$headings_stack};";
+    $styles[':root'][] = "--font-headings: {$headings_stack};";
     
     // Headings Weight
     $headings_weight = get_theme_mod( 'ft_headings_weight', '600' );
-    $styles[':root'][] = "--ft-font-weight-headings: {$headings_weight};";
+    $styles[':root'][] = "--font-weight-headings: {$headings_weight};";
 
     // Line Heights
     $body_line_height = get_theme_mod( 'ft_body_line_height', '1.6' );
@@ -80,8 +80,18 @@ function ft_customizer_css_output() {
     // =========================================================================
     
     // Buttons
-    $btn_radius = get_theme_mod( 'ft_button_radius', '4' );
-    $styles['.ft-btn, button, input[type="submit"], input[type="button"], input[type="reset"]'][] = "border-radius: {$btn_radius}px;";
+    $btn_radius    = get_theme_mod( 'ft_button_radius', '4' );
+    $btn_font_size = get_theme_mod( 'ft_button_font_size', '13' );
+    $btn_pad_y     = get_theme_mod( 'ft_button_padding_y', '8' );
+    $btn_pad_x     = get_theme_mod( 'ft_button_padding_x', '16' );
+    $btn_border    = get_theme_mod( 'ft_button_border_width', '1' );
+
+    $styles['.btn, button, input[type="submit"], input[type="button"], input[type="reset"]'][] = "
+        border-radius: {$btn_radius}px;
+        font-size: {$btn_font_size}px;
+        padding: {$btn_pad_y}px {$btn_pad_x}px;
+        border-width: {$btn_border}px;
+    ";
 
     // Inputs
     $input_bg = get_theme_mod( 'ft_input_bg', '#ffffff' );
@@ -90,7 +100,7 @@ function ft_customizer_css_output() {
 
     // Icons
     $icon_stroke = get_theme_mod( 'ft_icon_stroke_width', '2' );
-    $styles['.ft-icon svg, svg'][] = "stroke-width: {$icon_stroke}px;";
+    $styles['.icon svg, svg'][] = "stroke-width: {$icon_stroke}px;";
     
     // =========================================================================
     // Layout
@@ -101,7 +111,7 @@ function ft_customizer_css_output() {
     // I haven't added the control yet, but I'll add the CSS logic placeholder.
     /*
     $container_width = get_theme_mod( 'ft_container_width', '1200' );
-    $styles[':root'][] = "--ft-container-width: {$container_width}px;";
+    $styles[':root'][] = "--container-width: {$container_width}px;";
     */
 
     // =========================================================================

@@ -21,8 +21,8 @@ if ( ! get_theme_mod( "ft_header_{$context}_show", true ) ) {
 $data = ft_get_page_header_data();
 
 // Helper to determine CSS classes
-$class = 'ft-hero ft-page-header-section';
-$class .= ' ft-header-' . $context;
+$class = 'hero page-header-section';
+$class .= ' header-' . $context;
 $style = '';
 
 if ( ! empty( $data['bg_color'] ) ) {
@@ -31,15 +31,15 @@ if ( ! empty( $data['bg_color'] ) ) {
 ?>
 
 <header class="<?php echo esc_attr( $class ); ?>" <?php echo $style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-    <div class="ft-container">
-        <div class="ft-hero-content">
+    <div class="container">
+        <div class="hero-content">
             
             <?php if ( 'home' === $context ) : ?>
                 <?php
                 $badge = get_theme_mod( 'ft_hero_badge', '' );
                 if ( ! empty( $badge ) ) :
                     ?>
-                    <span class="ft-hero-badge">
+                    <span class="hero-badge">
                         <?php ft_icon( 'zap', 14 ); ?>
                         <?php echo esc_html( $badge ); ?>
                     </span>
@@ -47,24 +47,24 @@ if ( ! empty( $data['bg_color'] ) ) {
             <?php endif; ?>
 
             <?php if ( ! empty( $data['title'] ) ) : ?>
-                <h1 class="ft-hero-title"><?php echo wp_kses_post( $data['title'] ); ?></h1>
+                <h1 class="hero-title"><?php echo wp_kses_post( $data['title'] ); ?></h1>
             <?php endif; ?>
             
             <?php if ( ! empty( $data['description'] ) ) : ?>
-                <div class="ft-hero-desc">
+                <div class="hero-desc">
                     <?php echo wp_kses_post( $data['description'] ); ?>
                 </div>
             <?php endif; ?>
             
             <?php if ( 'home' === $context ) : ?>
-                <div class="ft-hero-buttons">
+                <div class="hero-buttons">
                     <?php
                     $btn1_text = get_theme_mod( 'ft_hero_button_text', esc_html__( 'Get Started', 'functionalities-theme' ) );
                     $btn1_url  = get_theme_mod( 'ft_hero_button_url', '#' );
                     
                     if ( ! empty( $btn1_text ) ) :
                         ?>
-                        <a href="<?php echo esc_url( $btn1_url ); ?>" class="ft-btn ft-btn-primary ft-btn-lg">
+                        <a href="<?php echo esc_url( $btn1_url ); ?>" class="btn btn-primary btn-lg">
                             <?php echo esc_html( $btn1_text ); ?>
                             <?php ft_icon( 'arrow-right', 16 ); ?>
                         </a>
@@ -76,21 +76,21 @@ if ( ! empty( $data['bg_color'] ) ) {
                     
                     if ( ! empty( $btn2_text ) ) :
                         ?>
-                        <a href="<?php echo esc_url( $btn2_url ); ?>" class="ft-btn ft-btn-secondary ft-btn-lg">
+                        <a href="<?php echo esc_url( $btn2_url ); ?>" class="btn btn-secondary btn-lg">
                             <?php echo esc_html( $btn2_text ); ?>
                         </a>
                     <?php endif; ?>
                 </div>
                 
                 <?php if ( get_theme_mod( 'ft_show_stats', true ) ) : ?>
-                    <div class="ft-stats">
+                    <div class="stats">
                         <?php
                         $stats = ft_get_hero_stats();
                         foreach ( $stats as $stat ) :
                             ?>
-                            <div class="ft-stat">
-                                <span class="ft-stat-value"><?php echo esc_html( $stat['value'] ); ?></span>
-                                <span class="ft-stat-label"><?php echo esc_html( $stat['label'] ); ?></span>
+                            <div class="stat">
+                                <span class="stat-value"><?php echo esc_html( $stat['value'] ); ?></span>
+                                <span class="stat-label"><?php echo esc_html( $stat['label'] ); ?></span>
                             </div>
                         <?php endforeach; ?>
                     </div>

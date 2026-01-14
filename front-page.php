@@ -39,7 +39,7 @@ uasort( $enabled_sections, function( $a, $b ) {
 
 ?>
 
-<main id="primary" class="site-main ft-frontpage-sections">
+<main id="primary" class="site-main frontpage-sections">
 
     <?php
     foreach ( $enabled_sections as $id => $section ) {

@@ -12,13 +12,13 @@
      * Mobile Menu Toggle
      */
     function initMobileMenu() {
-        const menuToggle = document.getElementById('ft-menu-toggle');
-        const mobileNav = document.getElementById('ft-mobile-nav');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
 
         if (!menuToggle || !mobileNav) return;
 
-        const menuIcon = menuToggle.querySelector('.ft-icon-menu');
-        const closeIcon = menuToggle.querySelector('.ft-icon-close');
+        const menuIcon = menuToggle.querySelector('.icon-menu');
+        const closeIcon = menuToggle.querySelector('.icon-close');
 
         menuToggle.addEventListener('click', function () {
             const isOpen = mobileNav.classList.toggle('is-active');

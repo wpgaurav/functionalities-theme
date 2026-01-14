@@ -11,10 +11,10 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="ft-comments ft-card">
+<div id="comments" class="comments card">
 
     <?php if ( have_comments() ) : ?>
-        <h2 class="ft-comments-title ft-card-header">
+        <h2 class="comments-title card-header">
             <?php
             $ft_comment_count = get_comments_number();
             if ( '1' === $ft_comment_count ) {
@@ -34,7 +34,7 @@ if ( post_password_required() ) {
             ?>
         </h2>
 
-        <div class="ft-card-body">
+        <div class="card-body">
             <?php the_comments_navigation(); ?>
 
             <ol class="comment-list">
@@ -55,7 +55,7 @@ if ( post_password_required() ) {
 
     <?php endif; ?>
 
-    <div class="ft-card-body">
+    <div class="card-body">
         <?php
         comment_form( array(
             'title_reply_before' => '<h3 id="reply-title" class="comment-reply-title">',

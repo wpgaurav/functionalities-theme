@@ -13,19 +13,19 @@ $has_sidebar = ft_has_sidebar() && ! is_front_page();
 ?>
 
 <?php if ( $has_sidebar ) : ?>
-<div class="ft-with-sidebar <?php echo esc_attr( ft_get_sidebar_class() ); ?>">
-    <div class="ft-content-area">
+<div class="with-sidebar <?php echo esc_attr( ft_get_sidebar_class() ); ?>">
+    <div class="content-area">
 <?php endif; ?>
 
 <?php if ( ! is_front_page() ) : ?>
-    <header class="ft-page-header">
+    <header class="page-header">
         <?php if ( is_home() && ! is_front_page() ) : ?>
-            <h1 class="ft-page-title"><?php single_post_title(); ?></h1>
+            <h1 class="page-title"><?php single_post_title(); ?></h1>
         <?php elseif ( is_archive() ) : ?>
-            <?php the_archive_title( '<h1 class="ft-page-title">', '</h1>' ); ?>
-            <?php the_archive_description( '<p class="ft-page-subtitle">', '</p>' ); ?>
+            <?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
+            <?php the_archive_description( '<p class="page-subtitle">', '</p>' ); ?>
         <?php elseif ( is_search() ) : ?>
-            <h1 class="ft-page-title">
+            <h1 class="page-title">
                 <?php
                 printf(
                     /* translators: %s: search query */
@@ -40,7 +40,7 @@ $has_sidebar = ft_has_sidebar() && ! is_front_page();
 
 <?php if ( have_posts() ) : ?>
     
-    <div class="ft-posts ft-grid-auto">
+    <div class="posts grid-auto">
         <?php while ( have_posts() ) : the_post(); ?>
             <?php get_template_part( 'template-parts/content', get_post_type() ); ?>
         <?php endwhile; ?>
@@ -55,9 +55,9 @@ $has_sidebar = ft_has_sidebar() && ! is_front_page();
 <?php endif; ?>
 
 <?php if ( $has_sidebar ) : ?>
-    </div><!-- .ft-content-area -->
+    </div><!-- .content-area -->
     <?php get_sidebar(); ?>
-</div><!-- .ft-with-sidebar -->
+</div><!-- .with-sidebar -->
 <?php endif; ?>
 
 <?php

@@ -28,14 +28,14 @@ function ft_posted_on() {
         esc_html( get_the_modified_date() )
     );
     
-    echo '<span class="posted-on">' . $time_string . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo '<span class="posted-on">' . ft_get_icon( 'date', 16 ) . ' ' . $time_string . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**
  * Output posted by author
  */
 function ft_posted_by() {
-    echo '<span class="byline">' . sprintf(
+    echo '<span class="byline">' . ft_get_icon( 'user', 16 ) . ' ' . sprintf(
         /* translators: %s: post author */
         esc_html_x( 'by %s', 'post author', 'functionalities-theme' ),
         '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
@@ -128,7 +128,7 @@ function ft_excerpt() {
     
     echo '<div class="entry-excerpt">';
     echo '<p>' . wp_kses_post( $excerpt ) . '</p>';
-    echo '<a href="' . esc_url( get_permalink() ) . '" class="ft-btn ft-btn-outline">';
+    echo '<a href="' . esc_url( get_permalink() ) . '" class="btn btn-outline">';
     esc_html_e( 'Read More', 'functionalities-theme' );
     ft_icon( 'arrow-right', 16 );
     echo '</a>';
@@ -143,7 +143,7 @@ function ft_pagination() {
         'mid_size'           => 2,
         'prev_text'          => esc_html__( '« Previous', 'functionalities-theme' ),
         'next_text'          => esc_html__( 'Next »', 'functionalities-theme' ),
-        'class'              => 'ft-pagination',
+        'class'              => 'pagination',
         'screen_reader_text' => esc_html__( 'Posts navigation', 'functionalities-theme' ),
     ) );
 }
@@ -166,17 +166,17 @@ function ft_breadcrumbs() {
         return;
     }
 
-    echo '<nav class="ft-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumbs', 'functionalities-theme' ) . '">';
-    echo '<span class="ft-breadcrumb-item"><a href="' . esc_url( home_url( '/' ) ) . '">' . ft_get_icon( 'home', 14 ) . '<span class="screen-reader-text">' . esc_html__( 'Home', 'functionalities-theme' ) . '</span></a></span>';
+    echo '<nav class="breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumbs', 'functionalities-theme' ) . '">';
+    echo '<span class="breadcrumb-item"><a href="' . esc_url( home_url( '/' ) ) . '">' . ft_get_icon( 'home', 14 ) . '<span class="screen-reader-text">' . esc_html__( 'Home', 'functionalities-theme' ) . '</span></a></span>';
 
-    echo '<span class="ft-breadcrumb-sep">/</span>';
+    echo '<span class="breadcrumb-sep">/</span>';
 
     if ( is_home() ) {
-        echo '<span class="ft-breadcrumb-item current">' . esc_html( get_the_title( get_option( 'page_for_posts' ) ) ) . '</span>';
+        echo '<span class="breadcrumb-item current">' . esc_html( get_the_title( get_option( 'page_for_posts' ) ) ) . '</span>';
     } elseif ( is_archive() ) {
-        echo '<span class="ft-breadcrumb-item current">' . get_the_archive_title() . '</span>';
+        echo '<span class="breadcrumb-item current">' . get_the_archive_title() . '</span>';
     } elseif ( is_search() ) {
-        echo '<span class="ft-breadcrumb-item current">' . sprintf( esc_html__( 'Search: %s', 'functionalities-theme' ), get_search_query() ) . '</span>';
+        echo '<span class="breadcrumb-item current">' . sprintf( esc_html__( 'Search: %s', 'functionalities-theme' ), get_search_query() ) . '</span>';
     } elseif ( is_singular() ) {
         // Parents
         global $post;
@@ -184,11 +184,11 @@ function ft_breadcrumbs() {
             $ancestors = get_post_ancestors( $post->ID );
             $ancestors = array_reverse( $ancestors );
             foreach ( $ancestors as $ancestor ) {
-                echo '<span class="ft-breadcrumb-item"><a href="' . esc_url( get_permalink( $ancestor ) ) . '">' . esc_html( get_the_title( $ancestor ) ) . '</a></span>';
-                echo '<span class="ft-breadcrumb-sep">/</span>';
+                echo '<span class="breadcrumb-item"><a href="' . esc_url( get_permalink( $ancestor ) ) . '">' . esc_html( get_the_title( $ancestor ) ) . '</a></span>';
+                echo '<span class="breadcrumb-sep">/</span>';
             }
         }
-        echo '<span class="ft-breadcrumb-item current">' . get_the_title() . '</span>';
+        echo '<span class="breadcrumb-item current">' . get_the_title() . '</span>';
     }
     
     echo '</nav>';

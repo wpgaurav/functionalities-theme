@@ -44,12 +44,33 @@ class FT_Customizer_Global {
     }
 
     /**
-     * Branding (Actually usually easier to leave in Site Identity, but I'll add refs here if needed)
+     * Branding (Site Identity)
      */
     public static function register_branding( $wp_customize ) {
-        // We modified Site Identity earlier, we can leave it at root or move here.
-        // For now, let's keep the extra branding controls we added to 'title_tagline' 
-        // as they are logically best placed there (Site Identity).
+        // Display Options
+        $wp_customize->add_setting( 'ft_show_site_title', array(
+            'default'           => true,
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'ft_sanitize_checkbox',
+        ) );
+
+        $wp_customize->add_control( 'ft_show_site_title', array(
+            'label'   => esc_html__( 'Show Site Title', 'functionalities-theme' ),
+            'section' => 'title_tagline',
+            'type'    => 'checkbox',
+        ) );
+
+        $wp_customize->add_setting( 'ft_show_site_tagline', array(
+            'default'           => false,
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'ft_sanitize_checkbox',
+        ) );
+
+        $wp_customize->add_control( 'ft_show_site_tagline', array(
+            'label'   => esc_html__( 'Show Tagline', 'functionalities-theme' ),
+            'section' => 'title_tagline',
+            'type'    => 'checkbox',
+        ) );
     }
 
     /**
@@ -107,6 +128,8 @@ class FT_Customizer_Global {
             'panel'    => 'ft_global_panel',
         ) );
 
+        // --- Body Typography ---
+
         $wp_customize->add_setting( 'ft_body_font_family', array(
             'default'           => 'Inter',
             'transport'         => 'refresh',
@@ -125,7 +148,53 @@ class FT_Customizer_Global {
             ),
         ) );
 
-        // Headings
+        $wp_customize->add_setting( 'ft_body_font_size', array(
+            'default'           => 14,
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'absint',
+        ) );
+
+        $wp_customize->add_control( 'ft_body_font_size', array(
+            'label'       => esc_html__( 'Body Font Size (px)', 'functionalities-theme' ),
+            'section'     => 'ft_typography',
+            'type'        => 'number',
+            'input_attrs' => array( 'min' => 12, 'max' => 24, 'step' => 1 ),
+        ) );
+
+        $wp_customize->add_setting( 'ft_body_line_height', array(
+            'default'           => '1.6',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+    
+        $wp_customize->add_control( 'ft_body_line_height', array(
+            'label'       => esc_html__( 'Body Line Height', 'functionalities-theme' ),
+            'section'     => 'ft_typography',
+            'type'        => 'number',
+            'input_attrs' => array( 'min' => 1, 'max' => 3, 'step' => 0.1 ),
+        ) );
+
+        $wp_customize->add_setting( 'ft_body_font_weight', array(
+            'default'           => '400',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+
+        $wp_customize->add_control( 'ft_body_font_weight', array(
+            'label'   => esc_html__( 'Body Font Weight', 'functionalities-theme' ),
+            'section' => 'ft_typography',
+            'type'    => 'select',
+            'choices' => array(
+                '300' => 'Light (300)',
+                '400' => 'Regular (400)',
+                '500' => 'Medium (500)',
+                '600' => 'Semi-Bold (600)',
+                '700' => 'Bold (700)',
+            ),
+        ) );
+
+        // --- Headings Typography ---
+
         $wp_customize->add_setting( 'ft_headings_font_family', array(
             'default'           => 'Inter',
             'transport'         => 'refresh',
@@ -143,18 +212,67 @@ class FT_Customizer_Global {
             ),
         ) );
 
-        // Line Height
-        $wp_customize->add_setting( 'ft_body_line_height', array(
-            'default'           => '1.6',
+        $wp_customize->add_setting( 'ft_headings_font_weight', array(
+            'default'           => '600',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+
+        $wp_customize->add_control( 'ft_headings_font_weight', array(
+            'label'   => esc_html__( 'Headings Font Weight', 'functionalities-theme' ),
+            'section' => 'ft_typography',
+            'type'    => 'select',
+            'choices' => array(
+                '400' => 'Regular (400)',
+                '500' => 'Medium (500)',
+                '600' => 'Semi-Bold (600)',
+                '700' => 'Bold (700)',
+                '800' => 'Extra-Bold (800)',
+            ),
+        ) );
+
+        $wp_customize->add_setting( 'ft_headings_line_height', array(
+            'default'           => '1.3',
             'transport'         => 'postMessage',
             'sanitize_callback' => 'sanitize_text_field',
         ) );
     
-        $wp_customize->add_control( 'ft_body_line_height', array(
-            'label'       => esc_html__( 'Body Line Height', 'functionalities-theme' ),
+        $wp_customize->add_control( 'ft_headings_line_height', array(
+            'label'       => esc_html__( 'Headings Line Height', 'functionalities-theme' ),
             'section'     => 'ft_typography',
             'type'        => 'number',
-            'input_attrs' => array( 'min' => 1, 'max' => 3, 'step' => 0.1 ),
+            'input_attrs' => array( 'min' => 1, 'max' => 2.5, 'step' => 0.1 ),
+        ) );
+
+        $wp_customize->add_setting( 'ft_headings_transform', array(
+            'default'           => 'none',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+
+        $wp_customize->add_control( 'ft_headings_transform', array(
+            'label'   => esc_html__( 'Headings Text Transform', 'functionalities-theme' ),
+            'section' => 'ft_typography',
+            'type'    => 'select',
+            'choices' => array(
+                'none'       => 'None',
+                'uppercase'  => 'Uppercase',
+                'capitalize' => 'Capitalize',
+                'lowercase'  => 'Lowercase',
+            ),
+        ) );
+        
+        $wp_customize->add_setting( 'ft_headings_letter_spacing', array(
+            'default'           => '0',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+
+        $wp_customize->add_control( 'ft_headings_letter_spacing', array(
+            'label'       => esc_html__( 'Headings Letter Spacing (px)', 'functionalities-theme' ),
+            'section'     => 'ft_typography',
+            'type'        => 'number',
+            'input_attrs' => array( 'min' => -2, 'max' => 10, 'step' => 0.5 ),
         ) );
     }
 
@@ -180,6 +298,58 @@ class FT_Customizer_Global {
             'type'        => 'number',
         ) );
 
+        // Button Font Size
+        $wp_customize->add_setting( 'ft_button_font_size', array(
+            'default'           => '13',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'absint',
+        ) );
+    
+        $wp_customize->add_control( 'ft_button_font_size', array(
+            'label'       => esc_html__( 'Button Font Size (px)', 'functionalities-theme' ),
+            'section'     => 'ft_design',
+            'type'        => 'number',
+        ) );
+
+        // Button Padding Vertical
+        $wp_customize->add_setting( 'ft_button_padding_y', array(
+            'default'           => '8',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'absint',
+        ) );
+    
+        $wp_customize->add_control( 'ft_button_padding_y', array(
+            'label'       => esc_html__( 'Button Vertical Padding (px)', 'functionalities-theme' ),
+            'section'     => 'ft_design',
+            'type'        => 'number',
+        ) );
+
+        // Button Padding Horizontal
+        $wp_customize->add_setting( 'ft_button_padding_x', array(
+            'default'           => '16',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'absint',
+        ) );
+    
+        $wp_customize->add_control( 'ft_button_padding_x', array(
+            'label'       => esc_html__( 'Button Horizontal Padding (px)', 'functionalities-theme' ),
+            'section'     => 'ft_design',
+            'type'        => 'number',
+        ) );
+
+         // Button Border Width
+         $wp_customize->add_setting( 'ft_button_border_width', array(
+            'default'           => '1',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'absint',
+        ) );
+    
+        $wp_customize->add_control( 'ft_button_border_width', array(
+            'label'       => esc_html__( 'Button Border Width (px)', 'functionalities-theme' ),
+            'section'     => 'ft_design',
+            'type'        => 'number',
+        ) );
+
         // Inputs
         $wp_customize->add_setting( 'ft_input_bg', array(
             'default'           => '#ffffff',
@@ -191,7 +361,7 @@ class FT_Customizer_Global {
             'label'   => esc_html__( 'Input Background', 'functionalities-theme' ),
             'section' => 'ft_design',
         ) ) );
-
+    
         $wp_customize->add_setting( 'ft_input_radius', array(
             'default'           => '4',
             'transport'         => 'postMessage',
@@ -209,9 +379,9 @@ class FT_Customizer_Global {
             'section' => 'ft_design',
             'type'    => 'select',
             'choices' => array(
-                'right' => 'Right Sidebar',
-                'left'  => 'Left Sidebar',
-                'none'  => 'No Sidebar',
+                'right' => esc_html__( 'Right Sidebar', 'functionalities-theme' ),
+                'left'  => esc_html__( 'Left Sidebar', 'functionalities-theme' ),
+                'none'  => esc_html__( 'No Sidebar', 'functionalities-theme' ),
             ),
         ) );
     }
@@ -221,8 +391,20 @@ class FT_Customizer_Global {
      */
     public static function register_header_options( $wp_customize ) {
         $wp_customize->add_section( 'ft_header', array(
-            'title'    => esc_html__( 'Header / Top Bar', 'functionalities-theme' ),
+            'title'    => esc_html__( 'Header', 'functionalities-theme' ),
             'panel'    => 'ft_global_panel',
+        ) );
+
+        $wp_customize->add_setting( 'ft_sticky_header', array(
+            'default'           => true,
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'ft_sanitize_checkbox',
+        ) );
+
+        $wp_customize->add_control( 'ft_sticky_header', array(
+            'label'   => esc_html__( 'Sticky Header', 'functionalities-theme' ),
+            'section' => 'ft_header',
+            'type'    => 'checkbox',
         ) );
 
         $wp_customize->add_setting( 'ft_show_topbar', array(
@@ -240,14 +422,17 @@ class FT_Customizer_Global {
         $wp_customize->add_setting( 'ft_topbar_text', array(
             'default'           => esc_html__( 'For WordPress', 'functionalities-theme' ),
             'transport'         => 'refresh',
-            'sanitize_callback' => 'sanitize_text_field',
+            'sanitize_callback' => 'wp_kses_post',
         ) );
 
         $wp_customize->add_control( 'ft_topbar_text', array(
-            'label'   => esc_html__( 'Top Bar Text', 'functionalities-theme' ),
-            'section' => 'ft_header',
-            'type'    => 'text',
+            'label'       => esc_html__( 'Top Bar Content (HTML allowed)', 'functionalities-theme' ),
+            'section'     => 'ft_header',
+            'type'        => 'textarea',
+            'description' => esc_html__( 'Enter text or HTML to display in the top bar.', 'functionalities-theme' ),
         ) );
+
+
     }
 
     /**

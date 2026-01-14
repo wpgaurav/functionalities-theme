@@ -7,12 +7,12 @@
  */
 ?>
 
-<section class="no-results not-found ft-card">
-    <header class="ft-card-header">
+<section class="no-results not-found card">
+    <header class="card-header">
         <h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'functionalities-theme' ); ?></h1>
     </header>
 
-    <div class="page-content ft-card-body">
+    <div class="page-content card-body">
         <?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
 
             <p>

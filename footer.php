@@ -1,11 +1,11 @@
-    </div><!-- .ft-container -->
+    </div><!-- .container -->
 </main><!-- #primary -->
 
-<footer class="ft-footer">
-    <div class="ft-container">
-        <div class="ft-footer-grid">
-            <div class="ft-footer-about">
-                <div class="ft-footer-brand">
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="footer-brand">
                     <?php ft_icon( 'settings', 24 ); ?>
                     <?php bloginfo( 'name' ); ?>
                 </div>
@@ -13,16 +13,16 @@
                 $footer_desc = get_theme_mod( 'ft_footer_description', '' );
                 if ( ! empty( $footer_desc ) ) :
                 ?>
-                    <p class="ft-footer-desc"><?php echo wp_kses_post( $footer_desc ); ?></p>
+                    <p class="footer-desc"><?php echo wp_kses_post( $footer_desc ); ?></p>
                 <?php else : ?>
-                    <p class="ft-footer-desc"><?php bloginfo( 'description' ); ?></p>
+                    <p class="footer-desc"><?php bloginfo( 'description' ); ?></p>
                 <?php endif; ?>
                 
                 <?php
                 $social_links = ft_get_social_links();
                 if ( ! empty( $social_links ) ) :
                 ?>
-                    <div class="ft-social-links">
+                    <div class="social-links">
                         <?php foreach ( $social_links as $network => $url ) : ?>
                             <a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( ucfirst( $network ) ); ?>">
                                 <?php ft_icon( $network, 18 ); ?>
@@ -33,17 +33,17 @@
             </div>
 
             <?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
-                <div class="ft-footer-section">
+                <div class="footer-section">
                     <?php dynamic_sidebar( 'footer-1' ); ?>
                 </div>
             <?php elseif ( has_nav_menu( 'footer' ) ) : ?>
-                <div class="ft-footer-section">
+                <div class="footer-section">
                     <h4><?php esc_html_e( 'Links', 'functionalities-theme' ); ?></h4>
                     <?php
                     wp_nav_menu( array(
                         'theme_location' => 'footer',
                         'container'      => false,
-                        'menu_class'     => 'ft-footer-links',
+                        'menu_class'     => 'footer-links',
                         'depth'          => 1,
                     ) );
                     ?>
@@ -51,17 +51,17 @@
             <?php endif; ?>
 
             <?php if ( is_active_sidebar( 'footer-2' ) ) : ?>
-                <div class="ft-footer-section">
+                <div class="footer-section">
                     <?php dynamic_sidebar( 'footer-2' ); ?>
                 </div>
             <?php elseif ( has_nav_menu( 'footer-2' ) ) : ?>
-                <div class="ft-footer-section">
+                <div class="footer-section">
                     <h4><?php esc_html_e( 'Resources', 'functionalities-theme' ); ?></h4>
                     <?php
                     wp_nav_menu( array(
                         'theme_location' => 'footer-2',
                         'container'      => false,
-                        'menu_class'     => 'ft-footer-links',
+                        'menu_class'     => 'footer-links',
                         'depth'          => 1,
                     ) );
                     ?>
@@ -69,17 +69,17 @@
             <?php endif; ?>
 
             <?php if ( is_active_sidebar( 'footer-3' ) ) : ?>
-                <div class="ft-footer-section">
+                <div class="footer-section">
                     <?php dynamic_sidebar( 'footer-3' ); ?>
                 </div>
             <?php elseif ( has_nav_menu( 'footer-3' ) ) : ?>
-                <div class="ft-footer-section">
+                <div class="footer-section">
                     <h4><?php esc_html_e( 'More', 'functionalities-theme' ); ?></h4>
                     <?php
                     wp_nav_menu( array(
                         'theme_location' => 'footer-3',
                         'container'      => false,
-                        'menu_class'     => 'ft-footer-links',
+                        'menu_class'     => 'footer-links',
                         'depth'          => 1,
                     ) );
                     ?>
@@ -87,10 +87,10 @@
             <?php endif; ?>
         </div>
 
-        <div class="ft-footer-bottom">
+        <div class="footer-bottom">
             <p><?php echo ft_get_copyright(); ?></p>
             
-            <div class="ft-footer-legal">
+            <div class="footer-legal">
                 <?php
                 $privacy_page = get_privacy_policy_url();
                 if ( ! empty( $privacy_page ) ) :

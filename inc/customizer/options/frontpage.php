@@ -34,8 +34,16 @@ class FT_Customizer_Frontpage {
         self::register_section_controls( $wp_customize, 'contact', 'Contact Section', 80 );
         self::register_section_controls( $wp_customize, 'custom_html', 'Custom HTML', 90 );
 
-        // Add Specific Content Controls for Hero (Ported from old Customizer)
+        // Add Specific Content Controls
         self::add_hero_content_controls( $wp_customize );
+        self::add_features_content_controls( $wp_customize );
+        self::add_latest_posts_content_controls( $wp_customize );
+        self::add_featured_posts_content_controls( $wp_customize );
+        self::add_cta_content_controls( $wp_customize );
+        self::add_faq_content_controls( $wp_customize );
+        self::add_testimonials_content_controls( $wp_customize );
+        self::add_contact_content_controls( $wp_customize );
+        self::add_custom_html_content_controls( $wp_customize );
     }
 
     /**
@@ -212,4 +220,236 @@ class FT_Customizer_Frontpage {
         }
     }
 
+    /**
+     * Features Content
+     */
+    private static function add_features_content_controls( $wp_customize ) {
+        $section = 'ft_frontpage_features';
+        
+        $wp_customize->add_setting( 'ft_features_title', array(
+            'default' => __( 'Our Features', 'functionalities-theme' ),
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_features_title', array(
+            'label' => __( 'Section Title', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+
+        for ( $i = 1; $i <= 3; $i++ ) {
+            $wp_customize->add_setting( "ft_feature_{$i}_title", array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( "ft_feature_{$i}_title", array( 'label' => sprintf( __( 'Feature %d Title', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'text' ) );
+
+            $wp_customize->add_setting( "ft_feature_{$i}_text", array( 'default' => '', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( "ft_feature_{$i}_text", array( 'label' => sprintf( __( 'Feature %d Text', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'textarea' ) );
+
+            $wp_customize->add_setting( "ft_feature_{$i}_icon", array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( "ft_feature_{$i}_icon", array( 'label' => sprintf( __( 'Feature %d Icon (e.g., wordpress)', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'text' ) );
+        }
+    }
+
+    /**
+     * Latest Posts Content
+     */
+    private static function add_latest_posts_content_controls( $wp_customize ) {
+        $section = 'ft_frontpage_latest_posts';
+        
+        $wp_customize->add_setting( 'ft_latest_posts_title', array(
+            'default' => __( 'Latest News', 'functionalities-theme' ),
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_latest_posts_title', array(
+            'label' => __( 'Section Title', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+
+        $wp_customize->add_setting( 'ft_latest_posts_count', array(
+            'default' => 3,
+            'sanitize_callback' => 'absint',
+        ) );
+        $wp_customize->add_control( 'ft_latest_posts_count', array(
+            'label' => __( 'Number of Posts', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'number',
+        ) );
+    }
+
+    /**
+     * Featured Posts Content
+     */
+    private static function add_featured_posts_content_controls( $wp_customize ) {
+        $section = 'ft_frontpage_featured_posts';
+        
+        $wp_customize->add_setting( 'ft_featured_posts_title', array(
+            'default' => __( 'Featured Posts', 'functionalities-theme' ),
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_featured_posts_title', array(
+            'label' => __( 'Section Title', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+
+        $wp_customize->add_setting( 'ft_featured_posts_ids', array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_featured_posts_ids', array(
+            'label' => __( 'Post IDs (comma separated)', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+    }
+
+    /**
+     * CTA Content
+     */
+    private static function add_cta_content_controls( $wp_customize ) {
+        $section = 'ft_frontpage_cta';
+        
+        $wp_customize->add_setting( 'ft_cta_title', array(
+            'default' => __( 'Ready to get started?', 'functionalities-theme' ),
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_cta_title', array(
+            'label' => __( 'Title', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+
+        $wp_customize->add_setting( 'ft_cta_text', array(
+            'default' => __( 'Join us today.', 'functionalities-theme' ),
+            'sanitize_callback' => 'wp_kses_post',
+        ) );
+        $wp_customize->add_control( 'ft_cta_text', array(
+            'label' => __( 'Description', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'textarea',
+        ) );
+
+        $wp_customize->add_setting( 'ft_cta_btn_text', array(
+            'default' => __( 'Sign Up Now', 'functionalities-theme' ),
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_cta_btn_text', array(
+            'label' => __( 'Button Text', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+
+        $wp_customize->add_setting( 'ft_cta_btn_url', array(
+            'default' => '#',
+            'sanitize_callback' => 'esc_url_raw',
+        ) );
+        $wp_customize->add_control( 'ft_cta_btn_url', array(
+            'label' => __( 'Button URL', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'url',
+        ) );
+    }
+
+    /**
+     * FAQ Content
+     */
+    private static function add_faq_content_controls( $wp_customize ) {
+        $section = 'ft_frontpage_faq';
+        
+        $wp_customize->add_setting( 'ft_faq_title', array(
+            'default' => __( 'Frequently Asked Questions', 'functionalities-theme' ),
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_faq_title', array(
+            'label' => __( 'Section Title', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+
+        for ( $i = 1; $i <= 5; $i++ ) {
+            $wp_customize->add_setting( "ft_faq_{$i}_question", array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( "ft_faq_{$i}_question", array( 'label' => sprintf( __( 'Question %d', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'text' ) );
+
+            $wp_customize->add_setting( "ft_faq_{$i}_answer", array( 'default' => '', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( "ft_faq_{$i}_answer", array( 'label' => sprintf( __( 'Answer %d', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'textarea' ) );
+        }
+    }
+
+    /**
+     * Testimonials Content
+     */
+    private static function add_testimonials_content_controls( $wp_customize ) {
+        $section = 'ft_frontpage_testimonials';
+        
+        $wp_customize->add_setting( 'ft_testimonials_title', array(
+            'default' => __( 'Testimonials', 'functionalities-theme' ),
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_testimonials_title', array(
+            'label' => __( 'Section Title', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+
+        for ( $i = 1; $i <= 3; $i++ ) {
+            $wp_customize->add_setting( "ft_testimonial_{$i}_text", array( 'default' => '', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( "ft_testimonial_{$i}_text", array( 'label' => sprintf( __( 'Testimonial %d Text', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'textarea' ) );
+
+            $wp_customize->add_setting( "ft_testimonial_{$i}_author", array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( "ft_testimonial_{$i}_author", array( 'label' => sprintf( __( 'Testimonial %d Author', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'text' ) );
+        }
+    }
+
+    /**
+     * Contact Content
+     */
+    private static function add_contact_content_controls( $wp_customize ) {
+        $section = 'ft_frontpage_contact';
+        
+        $wp_customize->add_setting( 'ft_contact_title', array(
+            'default' => __( 'Contact Us', 'functionalities-theme' ),
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_contact_title', array(
+            'label' => __( 'Section Title', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+
+        $wp_customize->add_setting( 'ft_contact_text', array(
+            'default' => '',
+            'sanitize_callback' => 'wp_kses_post',
+        ) );
+        $wp_customize->add_control( 'ft_contact_text', array(
+            'label' => __( 'Description', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'textarea',
+        ) );
+
+        $wp_customize->add_setting( 'ft_contact_shortcode', array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'ft_contact_shortcode', array(
+            'label' => __( 'Form Shortcode', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'text',
+        ) );
+    }
+
+    /**
+     * Custom HTML Content
+     */
+    private static function add_custom_html_content_controls( $wp_customize ) {
+        $section = 'ft_frontpage_custom_html';
+        
+        $wp_customize->add_setting( 'ft_custom_html_content', array(
+            'default' => '',
+            'sanitize_callback' => 'wp_kses_post', // or custom sanitization for raw html allow
+        ) );
+        $wp_customize->add_control( 'ft_custom_html_content', array(
+            'label' => __( 'HTML Content', 'functionalities-theme' ),
+            'section' => $section,
+            'type' => 'textarea',
+        ) );
+    }
 }

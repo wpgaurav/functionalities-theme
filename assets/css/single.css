@@ -3,30 +3,30 @@
    ========================================================================== */
 
 /* Post Thumbnail (Edge-to-Edge) */
-.ft-single-post>.post-thumbnail {
+.single-post>.post-thumbnail {
     display: block;
     width: 100%;
     margin: 0;
 }
 
-.ft-single-post>.post-thumbnail img {
+.single-post>.post-thumbnail img {
     display: block;
     width: 100%;
     height: auto;
 }
 
 /* Page Header */
-.ft-page-header {
+.page-header {
     margin-bottom: 1.5rem;
 }
 
-.ft-page-title {
+.page-title {
     font-size: 1.4375rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
 }
 
-.ft-page-subtitle {
+.page-subtitle {
     color: var(--ft-text-secondary);
     font-size: 0.875rem;
     margin: 0;
@@ -118,11 +118,11 @@
    Comments
    ========================================================================== */
 
-.ft-comments {
+.comments {
     margin-top: 3rem;
 }
 
-.ft-comments-title {
+.comments-title {
     font-size: 1.125rem;
     margin-bottom: 1.5rem;
 }
