@@ -21,12 +21,12 @@ function ft_customizer_css_output() {
     // =========================================================================
     
     $primary = get_theme_mod( 'ft_primary_color', '#2271b1' );
-    $success = get_theme_mod( 'ft_success_color', '#00a32a' );
-    $warning = get_theme_mod( 'ft_warning_color', '#dba617' );
+    $success = get_theme_mod( 'ft_success_color', '#10b981' );
+    $warning = get_theme_mod( 'ft_warning_color', '#f59e0b' );
 
     $styles[':root'][] = "--primary: {$primary};";
     $styles[':root'][] = "--primary-dark: " . ft_adjust_brightness( $primary, -20 ) . ";";
-    $styles[':root'][] = "--primary-light: " . ft_adjust_brightness( $primary, 40 ) . ";";
+    $styles[':root'][] = "--primary-light: " . ft_adjust_brightness( $primary, 85 ) . ";";
     $styles[':root'][] = "--success: {$success};";
     $styles[':root'][] = "--warning: {$warning};";
 
@@ -90,7 +90,6 @@ function ft_customizer_css_output() {
         border-radius: {$btn_radius}px;
         font-size: {$btn_font_size}px;
         padding: {$btn_pad_y}px {$btn_pad_x}px;
-        border-width: {$btn_border}px;
     ";
 
     // Inputs

@@ -189,11 +189,18 @@ function ft_get_page_header_data() {
 function ft_get_hero_stats() {
     $stats = array();
     
+    $stat_defaults = array(
+        1 => array( 'value' => '1.0k+', 'label' => 'Active Users' ),
+        2 => array( 'value' => '99.9%', 'label' => 'Uptime' ),
+        3 => array( 'value' => '24/7', 'label' => 'Support' ),
+        4 => array( 'value' => '5.0', 'label' => 'Rating' ),
+    );
+
     for ( $i = 1; $i <= 4; $i++ ) {
-        $value = get_theme_mod( "ft_stat_{$i}_value", '' );
-        $label = get_theme_mod( "ft_stat_{$i}_label", '' );
+        $value = get_theme_mod( "ft_stat_{$i}_value", $stat_defaults[$i]['value'] );
+        $label = get_theme_mod( "ft_stat_{$i}_label", $stat_defaults[$i]['label'] );
         
-        if ( ! empty( $value ) && ! empty( $label ) ) {
+        if ( ! empty( $value ) || ! empty( $label ) ) {
             $stats[] = array(
                 'value' => $value,
                 'label' => $label,

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Theme version and constants
  */
-define( 'FT_VERSION', '1.0.0' );
+define( 'FT_VERSION', '1.0.7' );
 define( 'FT_DIR', get_template_directory() );
 define( 'FT_URL', get_template_directory_uri() );
 
@@ -239,24 +239,7 @@ function ft_excerpt_more( $more ) {
 }
 add_filter( 'excerpt_more', 'ft_excerpt_more' );
 
-/**
- * Output custom CSS from Customizer
- */
-function ft_customizer_css() {
-    $primary_color = get_theme_mod( 'ft_primary_color', '#2271b1' );
-    
-    if ( $primary_color !== '#2271b1' ) {
-        $css = sprintf(
-            ':root { --ft-primary: %s; --ft-primary-dark: %s; --ft-primary-light: %s; }',
-            esc_attr( $primary_color ),
-            esc_attr( ft_adjust_brightness( $primary_color, -20 ) ),
-            esc_attr( ft_adjust_brightness( $primary_color, 40 ) )
-        );
-        
-        wp_add_inline_style( 'functionalities-theme-style', $css );
-    }
-}
-add_action( 'wp_enqueue_scripts', 'ft_customizer_css', 20 );
+
 
 /**
  * Helper function to adjust color brightness

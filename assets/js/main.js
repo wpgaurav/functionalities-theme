@@ -126,11 +126,11 @@
      * FAQ Accordion
      */
     function initAccordion() {
-        const faqItems = document.querySelectorAll('.ft-faq-item');
+        const faqItems = document.querySelectorAll('.faq-item');
         if (!faqItems.length) return;
 
         faqItems.forEach(item => {
-            const question = item.querySelector('.ft-faq-question');
+            const question = item.querySelector('.faq-question');
             if (!question) return;
 
             question.addEventListener('click', () => {
@@ -150,7 +150,7 @@
      * Copy to Clipboard
      */
     function initCopyButtons() {
-        const copyButtons = document.querySelectorAll('.ft-copy-btn');
+        const copyButtons = document.querySelectorAll('.copy-btn');
         if (!copyButtons.length) return;
 
         copyButtons.forEach(btn => {

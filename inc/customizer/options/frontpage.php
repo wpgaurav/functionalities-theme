@@ -195,9 +195,16 @@ class FT_Customizer_Frontpage {
         ) );
 
         // Stats Repeater (Simulated with 4 fixed stats)
+        $stat_defaults = array(
+            1 => array( 'value' => '1.0k+', 'label' => 'Active Users' ),
+            2 => array( 'value' => '99.9%', 'label' => 'Uptime' ),
+            3 => array( 'value' => '24/7', 'label' => 'Support' ),
+            4 => array( 'value' => '5.0', 'label' => 'Rating' ),
+        );
+
         for ( $i = 1; $i <= 4; $i++ ) {
             $wp_customize->add_setting( "ft_stat_{$i}_value", array(
-                'default'           => '',
+                'default'           => $stat_defaults[$i]['value'],
                 'transport'         => 'refresh',
                 'sanitize_callback' => 'sanitize_text_field',
             ) );
@@ -208,7 +215,7 @@ class FT_Customizer_Frontpage {
             ) );
 
             $wp_customize->add_setting( "ft_stat_{$i}_label", array(
-                'default'           => '',
+                'default'           => $stat_defaults[$i]['label'],
                 'transport'         => 'refresh',
                 'sanitize_callback' => 'sanitize_text_field',
             ) );
@@ -236,14 +243,20 @@ class FT_Customizer_Frontpage {
             'type' => 'text',
         ) );
 
+        $feature_defaults = array(
+            1 => array( 'title' => __( 'Fast Performance', 'functionalities-theme' ), 'text' => __( 'Optimized for speed and efficiency to give your users the best experience.', 'functionalities-theme' ), 'icon' => 'zap' ),
+            2 => array( 'title' => __( 'Secure by Design', 'functionalities-theme' ), 'text' => __( 'Built with WordPress best practices to keep your site safe and secure.', 'functionalities-theme' ), 'icon' => 'lock' ),
+            3 => array( 'title' => __( 'Fully Responsive', 'functionalities-theme' ), 'text' => __( 'Looks great on all devices, from high-res desktops to mobile phones.', 'functionalities-theme' ), 'icon' => 'layout' ),
+        );
+
         for ( $i = 1; $i <= 3; $i++ ) {
-            $wp_customize->add_setting( "ft_feature_{$i}_title", array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_setting( "ft_feature_{$i}_title", array( 'default' => $feature_defaults[$i]['title'], 'sanitize_callback' => 'sanitize_text_field' ) );
             $wp_customize->add_control( "ft_feature_{$i}_title", array( 'label' => sprintf( __( 'Feature %d Title', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'text' ) );
 
-            $wp_customize->add_setting( "ft_feature_{$i}_text", array( 'default' => '', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_setting( "ft_feature_{$i}_text", array( 'default' => $feature_defaults[$i]['text'], 'sanitize_callback' => 'wp_kses_post' ) );
             $wp_customize->add_control( "ft_feature_{$i}_text", array( 'label' => sprintf( __( 'Feature %d Text', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'textarea' ) );
 
-            $wp_customize->add_setting( "ft_feature_{$i}_icon", array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_setting( "ft_feature_{$i}_icon", array( 'default' => $feature_defaults[$i]['icon'], 'sanitize_callback' => 'sanitize_text_field' ) );
             $wp_customize->add_control( "ft_feature_{$i}_icon", array( 'label' => sprintf( __( 'Feature %d Icon (e.g., wordpress)', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'text' ) );
         }
     }
@@ -365,11 +378,19 @@ class FT_Customizer_Frontpage {
             'type' => 'text',
         ) );
 
+        $faq_defaults = array(
+            1 => array( 'q' => __( 'What is this theme?', 'functionalities-theme' ), 'a' => __( 'This is a modern WordPress theme inspired by the WP Dashboard UI, designed for developers.', 'functionalities-theme' ) ),
+            2 => array( 'q' => __( 'Is it customizable?', 'functionalities-theme' ), 'a' => __( 'Yes! You can change almost everything via the WordPress Customizer.', 'functionalities-theme' ) ),
+            3 => array( 'q' => __( 'How do I get support?', 'functionalities-theme' ), 'a' => __( 'You can find documentation and support on our official website.', 'functionalities-theme' ) ),
+            4 => array( 'q' => '', 'a' => '' ),
+            5 => array( 'q' => '', 'a' => '' ),
+        );
+
         for ( $i = 1; $i <= 5; $i++ ) {
-            $wp_customize->add_setting( "ft_faq_{$i}_question", array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_setting( "ft_faq_{$i}_question", array( 'default' => $faq_defaults[$i]['q'], 'sanitize_callback' => 'sanitize_text_field' ) );
             $wp_customize->add_control( "ft_faq_{$i}_question", array( 'label' => sprintf( __( 'Question %d', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'text' ) );
 
-            $wp_customize->add_setting( "ft_faq_{$i}_answer", array( 'default' => '', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_setting( "ft_faq_{$i}_answer", array( 'default' => $faq_defaults[$i]['a'], 'sanitize_callback' => 'wp_kses_post' ) );
             $wp_customize->add_control( "ft_faq_{$i}_answer", array( 'label' => sprintf( __( 'Answer %d', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'textarea' ) );
         }
     }
@@ -390,11 +411,17 @@ class FT_Customizer_Frontpage {
             'type' => 'text',
         ) );
 
+        $testimonial_defaults = array(
+            1 => array( 'text' => __( 'The best theme I\'ve ever used. Clean code and beautiful design.', 'functionalities-theme' ), 'author' => 'John Doe' ),
+            2 => array( 'text' => __( 'A game changer for my development workflow. Highly recommended!', 'functionalities-theme' ), 'author' => 'Jane Smith' ),
+            3 => array( 'text' => '', 'author' => '' ),
+        );
+
         for ( $i = 1; $i <= 3; $i++ ) {
-            $wp_customize->add_setting( "ft_testimonial_{$i}_text", array( 'default' => '', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_setting( "ft_testimonial_{$i}_text", array( 'default' => $testimonial_defaults[$i]['text'], 'sanitize_callback' => 'wp_kses_post' ) );
             $wp_customize->add_control( "ft_testimonial_{$i}_text", array( 'label' => sprintf( __( 'Testimonial %d Text', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'textarea' ) );
 
-            $wp_customize->add_setting( "ft_testimonial_{$i}_author", array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_setting( "ft_testimonial_{$i}_author", array( 'default' => $testimonial_defaults[$i]['author'], 'sanitize_callback' => 'sanitize_text_field' ) );
             $wp_customize->add_control( "ft_testimonial_{$i}_author", array( 'label' => sprintf( __( 'Testimonial %d Author', 'functionalities-theme' ), $i ), 'section' => $section, 'type' => 'text' ) );
         }
     }
@@ -416,7 +443,7 @@ class FT_Customizer_Frontpage {
         ) );
 
         $wp_customize->add_setting( 'ft_contact_text', array(
-            'default' => '',
+            'default' => __( 'Have questions? We\'d love to hear from you. Fill out the form below and we\'ll get back to you as soon as possible.', 'functionalities-theme' ),
             'sanitize_callback' => 'wp_kses_post',
         ) );
         $wp_customize->add_control( 'ft_contact_text', array(

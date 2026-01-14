@@ -1,46 +1,50 @@
 <?php
 /**
  * Frontpage Features / Modules Section
+ *
+ * @package Functionalities_Theme
  */
+
+$title = get_theme_mod( 'ft_features_title', __( 'Our Features', 'functionalities-theme' ) );
 ?>
-<section class="feature-section container" id="features">
-    <h2>
-        <?php ft_icon( 'settings', 24 ); ?>
-        <?php esc_html_e( 'Features', 'functionalities-theme' ); ?>
-    </h2>
 
-    <div class="grid grid-3">
-        <!-- Feature 1 -->
-        <div class="module-card card">
-            <div class="module-header">
-                <div class="module-icon"><?php ft_icon( 'zap', 24 ); ?></div>
-                <h3 class="module-title"><?php esc_html_e( 'Fast Performance', 'functionalities-theme' ); ?></h3>
-            </div>
-            <div class="module-body">
-                <p class="module-desc"><?php esc_html_e( 'Optimized for speed and efficiency.', 'functionalities-theme' ); ?></p>
-            </div>
-        </div>
+<section class="section features">
+    <div class="container">
+        <?php if ( ! empty( $title ) ) : ?>
+            <h2 class="section-title">
+                <?php ft_icon( 'settings', 24 ); ?>
+                <?php echo esc_html( $title ); ?>
+            </h2>
+        <?php endif; ?>
 
-        <!-- Feature 2 -->
-        <div class="module-card card">
-            <div class="module-header">
-                <div class="module-icon"><?php ft_icon( 'lock', 24 ); ?></div>
-                <h3 class="module-title"><?php esc_html_e( 'Secure & Safe', 'functionalities-theme' ); ?></h3>
-            </div>
-            <div class="module-body">
-                <p class="module-desc"><?php esc_html_e( 'Built with best security practices.', 'functionalities-theme' ); ?></p>
-            </div>
-        </div>
+        <div class="module-grid grid grid-auto">
+            <?php
+            $feature_defaults = array(
+                1 => array( 'title' => __( 'Fast Performance', 'functionalities-theme' ), 'text' => __( 'Optimized for speed and efficiency to give your users the best experience.', 'functionalities-theme' ), 'icon' => 'zap' ),
+                2 => array( 'title' => __( 'Secure by Design', 'functionalities-theme' ), 'text' => __( 'Built with WordPress best practices to keep your site safe and secure.', 'functionalities-theme' ), 'icon' => 'lock' ),
+                3 => array( 'title' => __( 'Fully Responsive', 'functionalities-theme' ), 'text' => __( 'Looks great on all devices, from high-res desktops to mobile phones.', 'functionalities-theme' ), 'icon' => 'layout' ),
+            );
 
-        <!-- Feature 3 -->
-        <div class="module-card card">
-            <div class="module-header">
-                <div class="module-icon"><?php ft_icon( 'layout', 24 ); ?></div>
-                <h3 class="module-title"><?php esc_html_e( 'Responsive Design', 'functionalities-theme' ); ?></h3>
-            </div>
-            <div class="module-body">
-                <p class="module-desc"><?php esc_html_e( 'Looks great on all devices.', 'functionalities-theme' ); ?></p>
-            </div>
+            for ( $i = 1; $i <= 3; $i++ ) :
+                $f_title = get_theme_mod( "ft_feature_{$i}_title", $feature_defaults[$i]['title'] );
+                $f_text  = get_theme_mod( "ft_feature_{$i}_text", $feature_defaults[$i]['text'] );
+                $f_icon  = get_theme_mod( "ft_feature_{$i}_icon", $feature_defaults[$i]['icon'] );
+
+                if ( empty( $f_title ) ) {
+                    continue;
+                }
+                ?>
+                <div class="module-card">
+                    <?php if ( ! empty( $f_icon ) ) : ?>
+                        <div class="module-icon"><?php ft_icon( $f_icon, 32 ); ?></div>
+                    <?php endif; ?>
+                    <h3 class="module-title"><?php echo esc_html( $f_title ); ?></h3>
+                    <?php if ( ! empty( $f_text ) ) : ?>
+                        <p class="module-desc"><?php echo wp_kses_post( $f_text ); ?></p>
+                    <?php endif; ?>
+                </div>
+            <?php endfor; ?>
         </div>
     </div>
 </section>
+

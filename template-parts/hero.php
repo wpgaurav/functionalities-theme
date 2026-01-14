@@ -17,7 +17,7 @@ $show_stats  = get_theme_mod( 'ft_show_stats', true );
 $stats       = ft_get_hero_stats();
 ?>
 
-<section class="hero-section" aria-label="<?php esc_attr_e( 'Hero Section', 'functionalities-theme' ); ?>">
+<section class="hero" aria-label="<?php esc_attr_e( 'Hero Section', 'functionalities-theme' ); ?>">
     <div class="container">
         <div class="hero-content">
             <?php if ( ! empty( $badge_text ) ) : ?>

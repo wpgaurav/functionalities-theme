@@ -21,13 +21,17 @@
     -   *Update*: Removed granular visibility controls for simplification.
 -   **Mobile Menu**: Responsive slide-down menu with accessibility support.
 -   **CSS Variables**: Comprehensive token system for colors, spacing, and typography.
--   **Class Naming**: Removed legacy `ft-` prefix from all classes and IDs for cleaner markup.
--   **Customizer Enhancements**:
+-   **Class Naming & Prefix Cleanup**: Removed legacy `ft-` prefix from all classes, IDs, and CSS variables for a cleaner, framework-neutral codebase.
+-   **Theme Synchronization**: Bumped theme version to 1.0.4 and synced `FT_VERSION` constant.
+-   **Frontpage Rebuild**:
+    -   Implemented priority-based rendering for all sections.
+    -   Created/Updated section templates: Hero, Features, Latest Posts, Featured Posts, CTA, FAQ, Testimonials, Contact, and Custom HTML.
+    -   All sections now fully integrated with Customizer content controls.
+-   **Customizer Refactor**:
     -   **Identity**: Controls for **Logo Width/Height**, **Site Title** (Show/Hide, Color, Size, Weight), **Tagline** (Show/Hide).
     -   **Typography**: Controls for Font Family (Inter/System/Serif), Weight, Base Size, **Line Height**.
     -   **Global Design**: Controls for Button Radius, Input Styles, Icon Stroke Width.
-    -   **Frontpage Module Controls**: Added content fields (titles, descriptions, button text/url) for all frontpage sections (Features, Latest Posts, CTA, FAQ, etc).
-    -   **CSS Generation**: dynamic `customizer-css.php`.
+    -   **Frontpage Sections**: Toggleable and reorderable sections with full content management.
 -   **Single Post Layout**:
     -   Edge-to-Edge Featured Image (full width relative to card).
     -   Centered Content for Readability (max-width 680px).
@@ -37,6 +41,7 @@
     -   Fluid typography and spacing.
 -   **Interactions**: FAQ Accordion and Copy-to-Clipboard logic implemented in `main.js`.
 -   **Icons**: Added `user` and `date` icons to `inc/template-functions.php` and integrated into post meta.
+
 
 ### 🚧 In Progress / Next Up
 1.  **Deep Customizer Refactor (Modular Architecture)**:

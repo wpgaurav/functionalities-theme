@@ -1,9 +1,8 @@
 <?php
 /**
- * Post content template
+ * Post grid content template
  *
  * @package Functionalities_Theme
- * @since 1.0.0
  */
 ?>
 
@@ -18,18 +17,11 @@
     
     <div class="post-content card-body">
         <header class="entry-header">
-            <?php
-            if ( is_singular() ) :
-                the_title( '<h1 class="post-title entry-title">', '</h1>' );
-            else :
-                the_title( '<h2 class="post-title entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-            endif;
-            ?>
+            <?php the_title( '<h3 class="post-title entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h3>' ); ?>
             
             <?php if ( 'post' === get_post_type() ) : ?>
                 <div class="post-meta entry-meta">
                     <?php ft_posted_on(); ?>
-                    <?php ft_posted_by(); ?>
                 </div>
             <?php endif; ?>
         </header>

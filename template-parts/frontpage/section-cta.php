@@ -1,12 +1,35 @@
 <?php
 /**
  * Frontpage CTA Section
+ *
+ * @package Functionalities_Theme
  */
+
+$title = get_theme_mod( 'ft_cta_title', __( 'Ready to get started?', 'functionalities-theme' ) );
+$text = get_theme_mod( 'ft_cta_text', __( 'Join us today.', 'functionalities-theme' ) );
+$btn_text = get_theme_mod( 'ft_cta_btn_text', __( 'Sign Up Now', 'functionalities-theme' ) );
+$btn_url = get_theme_mod( 'ft_cta_btn_url', '#' );
 ?>
-<section class="cta-section container" id="cta" style="margin-top: 48px; text-align: center; padding: 48px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 4px;">
-    <h2><?php esc_html_e( 'Ready to get started?', 'functionalities-theme' ); ?></h2>
-    <p><?php esc_html_e( 'Join us today and explore the possibilities.', 'functionalities-theme' ); ?></p>
-    <a href="#" class="btn btn-primary btn-lg" style="margin-top: 16px;">
-        <?php esc_html_e( 'Get Started Now', 'functionalities-theme' ); ?>
-    </a>
+
+<section class="section cta bg-light">
+    <div class="container text-center">
+        <?php if ( ! empty( $title ) ) : ?>
+            <h2 class="section-title"><?php echo esc_html( $title ); ?></h2>
+        <?php endif; ?>
+
+        <?php if ( ! empty( $text ) ) : ?>
+            <div class="section-desc">
+                <?php echo wp_kses_post( $text ); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ( ! empty( $btn_text ) ) : ?>
+            <div class="section-actions">
+                <a href="<?php echo esc_url( $btn_url ); ?>" class="btn btn-primary btn-lg">
+                    <?php echo esc_html( $btn_text ); ?>
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
 </section>
+
