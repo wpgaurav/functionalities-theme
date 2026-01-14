@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Theme version and constants
  */
-define( 'FT_VERSION', '1.0.13' );
+define( 'FT_VERSION', '1.0.16' );
 define( 'FT_DIR', get_template_directory() );
 define( 'FT_URL', get_template_directory_uri() );
 
@@ -142,28 +142,8 @@ add_action( 'widgets_init', 'ft_widgets_init' );
  * Enqueue scripts and styles
  */
 function ft_scripts() {
-    // Inter Font (Local) - loaded via inline styles below to avoid render blocking or invalid link types
-    
-    // Main stylesheet (style.css - Reset)
+    // Main stylesheet (style.css - all CSS combined)
     wp_enqueue_style( 'functionalities-theme-style', get_stylesheet_uri(), array(), FT_VERSION );
-
-    // Global Styles (Layout, Typography, Variables)
-    wp_enqueue_style( 'ft-global', FT_URL . '/assets/css/global.min.css', array( 'functionalities-theme-style' ), FT_VERSION );
-
-    // Frontpage Styles
-    if ( is_front_page() ) {
-        wp_enqueue_style( 'ft-frontpage', FT_URL . '/assets/css/frontpage.min.css', array( 'ft-global' ), FT_VERSION );
-    }
-
-    // Blog / Archive Styles
-    if ( ( is_home() || is_archive() || is_search() ) && ! is_front_page() ) {
-        wp_enqueue_style( 'ft-blog', FT_URL . '/assets/css/blog.min.css', array( 'ft-global' ), FT_VERSION );
-    }
-
-    // Single Post / Page Styles
-    if ( is_singular() ) {
-        wp_enqueue_style( 'ft-single', FT_URL . '/assets/css/single.min.css', array( 'ft-global' ), FT_VERSION );
-    }
 
     // Inline CSS for Fonts
     $font_css = "

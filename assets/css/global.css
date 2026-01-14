@@ -303,6 +303,137 @@ body.admin-bar .topbar+.header.is-sticky {
     color: var(--primary);
 }
 
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+@media (max-width: 48rem) {
+    .nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 4.5rem;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-light);
+    padding: 1rem;
+    z-index: 999;
+    box-shadow: var(--shadow-lg);
+    max-height: calc(100vh - 4.5rem);
+    overflow-y: auto;
+}
+
+.mobile-nav.is-active {
+    display: block;
+}
+
+.topbar+.header+.mobile-nav {
+    top: calc(4.5rem + var(--admin-bar-height));
+}
+
+body.admin-bar .mobile-nav {
+    top: calc(4.5rem + var(--admin-bar-offset, 2rem));
+}
+
+body.admin-bar .topbar+.header+.mobile-nav {
+    top: calc(4.5rem + var(--admin-bar-height) + var(--admin-bar-offset, 2rem));
+}
+
+.mobile-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-nav li {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.mobile-nav li:last-child {
+    border-bottom: none;
+}
+
+.mobile-nav a {
+    display: block;
+    padding: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.mobile-nav a:hover {
+    background: var(--bg-body);
+    color: var(--primary);
+}
+
+/* Docs Layout */
+.docs-layout {
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.docs-sidebar {
+    position: sticky;
+    top: 6rem;
+}
+
+.docs-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.docs-nav li {
+    margin-bottom: 0.25rem;
+}
+
+.docs-nav a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    font-size: 0.9375rem;
+}
+
+.docs-nav a:hover,
+.docs-nav a.active {
+    background: var(--bg-body);
+    color: var(--primary);
+}
+
+.docs-content {
+    min-width: 0;
+}
+
+@media (max-width: 48rem) {
+    .docs-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .docs-sidebar {
+        position: static;
+    }
+}
+
 /* ==========================================================================
    Cards
    ========================================================================== */
