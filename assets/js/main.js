@@ -134,13 +134,13 @@
             if (!question) return;
 
             question.addEventListener('click', () => {
-                const isOpen = item.classList.contains('active');
+                const isOpen = item.classList.contains('is-active');
 
                 // Close all other items
-                faqItems.forEach(otherItem => otherItem.classList.remove('active'));
+                faqItems.forEach(otherItem => otherItem.classList.remove('is-active'));
 
                 if (!isOpen) {
-                    item.classList.add('active');
+                    item.classList.add('is-active');
                 }
             });
         });

@@ -22,11 +22,12 @@
 -   **Mobile Menu**: Responsive slide-down menu with accessibility support.
 -   **CSS Variables**: Comprehensive token system for colors, spacing, and typography.
 -   **Class Naming & Prefix Cleanup**: Removed legacy `ft-` prefix from all classes, IDs, and CSS variables for a cleaner, framework-neutral codebase.
--   **Theme Synchronization**: Bumped theme version to 1.0.4 and synced `FT_VERSION` constant.
+-   **Theme Synchronization**: Bumped theme version to 1.0.13 and synced `FT_VERSION` constant.
 -   **Frontpage Rebuild**:
     -   Implemented priority-based rendering for all sections.
     -   Created/Updated section templates: Hero, Features, Latest Posts, Featured Posts, CTA, FAQ, Testimonials, Contact, and Custom HTML.
     -   All sections now fully integrated with Customizer content controls.
+    -   Premium CSS styling for cards, CTAs, FAQs, and testimonials.
 -   **Customizer Refactor**:
     -   **Identity**: Controls for **Logo Width/Height**, **Site Title** (Show/Hide, Color, Size, Weight), **Tagline** (Show/Hide).
     -   **Typography**: Controls for Font Family (Inter/System/Serif), Weight, Base Size, **Line Height**.
@@ -36,27 +37,38 @@
     -   Edge-to-Edge Featured Image (full width relative to card).
     -   Centered Content for Readability (max-width 680px).
     -   Refined Title logic (always H1).
+    -   **Hero Layouts**: Implemented `top`, `bottom`, `overlay`, and `none` layouts.
+    -   **Author Box**: Created template with Schema.org markup.
+    -   **Related Posts**: Created template with ARIA landmarks.
+    -   **Meta Toggles**: Individual control per post type.
+    -   **Sidebar Toggle**: Per post type.
+-   **Blog/Archive Options Panel**:
+    -   Hero section with custom title/description.
+    -   Featured Posts section with manual IDs.
+    -   Category Filters section.
+    -   Custom HTML section.
+    -   General settings (layout, columns, sidebar, excerpt length).
 -   **Responsive Upgrade**:
     -   Updated `style.css` with Modern CSS (`clamp`, `min`, `minmax`).
     -   Fluid typography and spacing.
 -   **Interactions**: FAQ Accordion and Copy-to-Clipboard logic implemented in `main.js`.
 -   **Icons**: Added `user` and `date` icons to `inc/template-functions.php` and integrated into post meta.
-
+-   **Footer Styling**: Premium dark footer with responsive grid layout.
+-   **Accessibility & SEO**:
+    -   Schema.org Article markup on single posts.
+    -   Schema.org Person markup on author boxes.
+    -   ARIA labels on related posts section.
+    -   Skip links and focus states.
 
 ### 🚧 In Progress / Next Up
-1.  **Deep Customizer Refactor (Modular Architecture)**:
-    -   **Blog/Archive Options Panel**: Hero, Featured Posts, Category Filter, Custom HTML, Sidebar.
-    -   **Single Post/Page/CPT Options Panel**:
-        -   **Hero Layouts**: No Image, Left, Right, Top, Bottom, Overlay.
-        -   **Meta**: Toggle individual meta items.
-        -   Sections: Content, Author Box, Related Posts, Custom HTML.
-    -   **Sorting Logic**: Implement priority-based rendering for these dynamic sections.
-2.  **Accessibility & SEO**:
-    -   Ensure all new sections use valid Schema markup.
-    -   ARIA labels and roles.
-3.  **theme.json Integration**:
+1.  **theme.json Integration**:
     -   Sync new Global Options with `theme.json`.
+2.  **Additional Hero Layouts**:
+    -   Implement `left` and `right` split layouts for single posts.
+3.  **CPT Support**:
+    -   Extend Single Post options to custom post types dynamically.
 
 ## 5. Notes
 -   **Fonts**: Inter is locally hosted and integrated via `inc/customizer.php` and `functions.php`.
 -   **Icons**: Using feather-icons inspired SVG system.
+-   **IDE Lint Errors**: All WordPress function "undefined" errors are false positives from the IDE not recognizing WordPress globals. These do not affect theme functionality.

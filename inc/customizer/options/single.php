@@ -127,5 +127,21 @@ class FT_Customizer_Single {
             'section' => $section,
             'type' => 'checkbox'
         ) );
+
+        // Related Posts Count
+        $wp_customize->add_setting( "ft_{$type}_related_count", array(
+            'default' => 3,
+            'transport' => 'refresh',
+            'sanitize_callback' => 'absint'
+        ) );
+        $wp_customize->add_control( "ft_{$type}_related_count", array(
+            'label' => 'Number of Related Posts',
+            'section' => $section,
+            'type' => 'number',
+            'input_attrs' => array(
+                'min' => 1,
+                'max' => 6,
+            ),
+        ) );
     }
 }

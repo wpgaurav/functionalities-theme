@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Theme version and constants
  */
-define( 'FT_VERSION', '1.0.7' );
+define( 'FT_VERSION', '1.0.13' );
 define( 'FT_DIR', get_template_directory() );
 define( 'FT_URL', get_template_directory_uri() );
 

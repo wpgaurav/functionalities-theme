@@ -269,4 +269,143 @@
     font-size: 0.875rem;
     color: var(--primary);
     font-weight: 500;
-}.no-comments { padding: 1rem; } .comment-reply-title { margin-bottom: 1rem; }
+}
+
+.no-comments {
+    padding: 1rem;
+}
+
+.comment-reply-title {
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   Author Box
+   ========================================================================== */
+
+.author-box {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    align-items: flex-start;
+}
+
+.author-avatar img {
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+}
+
+.author-info {
+    flex: 1;
+}
+
+.author-name {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+}
+
+.author-name a {
+    color: var(--text-primary);
+}
+
+.author-name a:hover {
+    color: var(--primary);
+}
+
+.author-bio {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.author-posts-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==========================================================================
+   Related Posts
+   ========================================================================== */
+
+.related-posts {
+    background: var(--bg-body);
+    padding-block: 5rem;
+}
+
+.related-posts .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   Hero Overlay Layout
+   ========================================================================== */
+
+.hero-overlay {
+    background-size: cover;
+    background-position: center;
+    min-height: 25rem;
+    display: flex;
+    align-items: flex-end;
+    padding: 3rem;
+    position: relative;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.hero-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    border-radius: inherit;
+}
+
+.hero-overlay-content {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    max-width: 50rem;
+}
+
+.hero-overlay .entry-title {
+    color: #ffffff;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.hero-overlay .post-meta {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-overlay+.card-body {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+/* Readable Content Width */
+.readable-content {
+    max-width: 42.5rem;
+}
+
+@media (max-width: 48rem) {
+    .author-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .author-avatar img {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .hero-overlay {
+        min-height: 18rem;
+        padding: 2rem;
+    }
+}

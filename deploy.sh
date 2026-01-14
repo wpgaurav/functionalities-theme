@@ -22,14 +22,17 @@ sed -i '' "s/Version: $CURRENT_VERSION/Version: $NEW_VERSION/" "$STYLE_CSS"
 # 4. Update version in functions.php
 sed -i '' "s/define( 'FT_VERSION', '$CURRENT_VERSION' );/define( 'FT_VERSION', '$NEW_VERSION' );/" "$FUNCTIONS_PHP"
 
-# 5. Copy to destination
+# 5. Delete existing theme folder and copy fresh
+echo "Removing old theme from $DEST_PATH/$THEME_NAME..."
+rm -rf "$DEST_PATH/$THEME_NAME"
+
 echo "Copying clean theme to $DEST_PATH/$THEME_NAME..."
 
 # Create destination path if it doesn't exist
-mkdir -p "$DEST_PATH"
+mkdir -p "$DEST_PATH/$THEME_NAME"
 
 # Use rsync to copy and exclude unwanted development files
-rsync -av --delete \
+rsync -av \
   --exclude '.git/' \
   --exclude '.gitignore' \
   --exclude '.DS_Store' \
